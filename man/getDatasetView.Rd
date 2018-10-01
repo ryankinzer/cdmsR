@@ -4,20 +4,25 @@
 \alias{getDatasetView}
 \title{getDatasetView:}
 \usage{
-getDatasetView(datastoreID, Species = NULL, Run = NULL, MPG = NULL,
-  POP = NULL, StreamName = NULL, SurveyYear = NULL,
-  cdms_host = "https://cdms.nptfisheries.org")
+getDatasetView(datastoreID, Species = c("Chinook salmon", "Steelhead",
+  "Bull trout", "Coho salmon"), Run = c("Spring", "Spring/summer", "Summer",
+  "Fall", "Winter"), SurveyYear = NULL, MPG = NULL, POP = NULL,
+  StreamName = NULL, cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
 \item{datastoreID}{for CDMS dataset.}
+
+\item{Species}{a character string of either Chinook salmon, Steelhead, or Bull trout, default Chinook salmon}
+
+\item{Run}{a character string of either Spring, Spring/summer, Summer, Fall, or Winter, default Spring/summer}
+
+\item{SurveyYear}{a single or two dimension vector consisting of the only year, single vector, or start year and last year of interest}
 
 \item{MPG}{}
 
 \item{POP}{}
 
 \item{StreamName}{}
-
-\item{SurveyYear}{}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }

@@ -8,7 +8,7 @@
 #'
 #' @param Run a character string of either Spring, Spring/summer, Summer, Fall, or Winter, default Spring/summer
 #'
-#' @param SurveyYear a two dimension vector consisting of the start year and last year of interest
+#' @param SurveyYear a single or two dimension vector consisting of the only year, single vector, or start year and last year of interest
 #'
 #' @param MPG
 #'
@@ -28,12 +28,18 @@
 
 getDatasetView <- function(datastoreID, Species = c('Chinook salmon', 'Steelhead', 'Bull trout', 'Coho salmon'),
                            Run = c('Spring', 'Spring/summer', 'Summer', 'Fall', 'Winter'),
-                           SurveyYear = c(1990, 2050),
+                           SurveyYear = NULL,
                            MPG = NULL, POP = NULL, StreamName = NULL,
                            cdms_host = 'https://cdms.nptfisheries.org'){
 
   Species <- match.arg(Species)
   Run <- match.arg(Run)
+
+  stopifnot(!is.null(SurveyYear))
+
+  if(length(SurveyYear) == 1){
+    SurveyYear <- c(SurveyYear,SurveyYear)
+  }
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
@@ -68,10 +74,9 @@ getDatasetView <- function(datastoreID, Species = c('Chinook salmon', 'Steelhead
                     EndYear = SurveyYear[2],
                     MPG = MPG,
                     POP = POP,
-                    StreamName = StreamName,
-                    SurveyYear = SurveyYear)
+                    StreamName = StreamName)
 
-  #modify_url(req_url, query = queryList)
+  httr::modify_url(req_url, query = queryList)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
