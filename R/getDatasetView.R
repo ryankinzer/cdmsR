@@ -22,7 +22,10 @@
 #' @export
 #' @return NULL
 
-getDatasetView <- function(datastoreID, MPG = NULL, POP = NULL, StreamName = NULL, SurveyYear = NULL, cdms_host = 'https://cdms.nptfisheries.org'){
+getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
+                           MPG = NULL, POP = NULL, StreamName = NULL,
+                           SurveyYear = NULL,
+                           cdms_host = 'https://cdms.nptfisheries.org'){
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
@@ -33,6 +36,8 @@ getDatasetView <- function(datastoreID, MPG = NULL, POP = NULL, StreamName = NUL
 
   # ActivityID
   queryList <- list(id = datastoreID,
+                    Species = Species,
+                    Run = Run,
                     MPG = MPG,
                     POP = POP,
                     StreamName = StreamName,
