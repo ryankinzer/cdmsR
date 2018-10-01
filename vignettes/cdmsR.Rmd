@@ -88,11 +88,13 @@ head(activity_details)
 ```
 
 ```{r}
-#dataset <- getProjectData(datasetID = 4316, cdms_host = "https://cdms.nptfisheries.org")
+dataset <- getProjectData(datasetID = 4316, cdms_host = "https://cdms.nptfisheries.org")
+
+head(dataset)
 ```
 
 
 ```{r}
-#big_bucket <- getDatasetView(datastoreID = 68, MPG = NULL, POP = NULL, StreamName = NULL, SurveyYear = NULL,
-#                           cdms_host = "https://cdms.nptfisheries.org")
+big_bucket <- getDatasetView(datastoreID = 68, Species = 'Steelhead', Run = 'Summer', MPG = NULL, POP = NULL, StreamName = NULL, SurveyYear = 2017,
+                           cdms_host = "https://cdms.nptfisheries.org")
 ```

@@ -26,10 +26,33 @@ getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
                            MPG = NULL, POP = NULL, StreamName = NULL,
                            SurveyYear = NULL,
                            cdms_host = 'https://cdms.nptfisheries.org'){
+
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
   #cdms_host <- match.arg(cdms_host)
+
+  if(!is.null(Species)){
+    Species <-  paste0("'",Species,"'")
+  }
+
+  if(!is.null(Run)){
+    Run <- paste0("'",Run,"'")
+  }
+
+  if(!is.null(MPG)){
+    MPG <- paste0("'",MPG,"'")
+  }
+
+  if(!is.null(POP)){
+    POP <- paste0("'",POP,"'")
+  }
+
+  if(!is.null(StreamName)){
+    StreamName <- paste0("'",StreamName,"'")
+  }
+
+
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/dataset/getfulldatasetview')
@@ -42,6 +65,8 @@ getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
                     POP = POP,
                     StreamName = StreamName,
                     SurveyYear = SurveyYear)
+
+  modify_url(req_url, query = queryList)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
