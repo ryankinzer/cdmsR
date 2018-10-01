@@ -18,7 +18,6 @@ getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.o
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
-  library(dplyr)
   #cdms_host <- match.arg(cdms_host)
 
   # detail url
@@ -37,8 +36,8 @@ getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.o
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
-  df <- jsonlite::fromJSON(req_con, flatten = TRUE) %>%
-    select(HeaderID = Id, ActivityID = ActivityId, everything())
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE) dplyr::"%>%"
+    dplyr::select(HeaderID = Id, ActivityID = ActivityId, everything())
 
   return(df)
 

@@ -16,7 +16,6 @@
 
 getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'){
 
-  library(dplyr)
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
@@ -39,8 +38,8 @@ getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
 
-  df <- jsonlite::fromJSON(req_con, flatten = TRUE) %>%
-    select(ActivityID = Id, everything())
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE) dplyr::"%>%"
+    dplyr::select(ActivityID = Id, everything())
 
   return(df)
 
