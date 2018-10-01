@@ -2,7 +2,12 @@
 
 export(cdmsLogin)
 export(getActivities)
+export(getDatasetView)
+export(getDatastores)
 export(getDetailRecords)
 export(getHeaderRecords)
+export(getProjectData)
+export(getProjectDatasets)
+export(getProjects)
 import(httr)
 import(jsonlite)

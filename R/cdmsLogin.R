@@ -28,17 +28,22 @@ cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.
 
   #password <- encription_stuff(password)
 
-  login_url <- paste0(cdms_host, '/services/api/v1/account/login')
+  req_url <- paste0(cdms_host, '/services/api/v1/account/login')
   #"https://cdms.nptfisheries.org/services/api/v1/account/login"
 
-  creds <- toJSON(list(Username = username, Password = api_key), auto_unbox = T)
+  creds <- jsonlite::toJSON(list(Username = username, Password = api_key), auto_unbox = T)
 
-  auth <- POST(login_url, add_headers(prefer = "respond-async"), content_type_json(), body = creds)
+  auth <- httr::POST(req_url, add_headers(prefer = "respond-async"), content_type_json(), body = creds)
 
   #warn_for_status(r)
-  stop_for_status(auth, task = paste0('login to ', cdms_host))
+  #stop_for_status(auth, task = paste0('login to ', cdms_host))
+  user_info <- httr::content(auth, "parsed", "application/json", encoding = "UTF-8")[[3]]
+  #s_code <- auth$status_code
 
-  user_info <- content(auth, "parsed", "application/json", encoding = "UTF-8")[[3]]
+  if(status_code(auth)==200){
+    cat(paste0('Logged in as: ', user_info$Fullname,'\n'))
+  }
 
-  print(paste0('Logged in as: ', user_info$Fullname))
+  return(auth)
+
 }

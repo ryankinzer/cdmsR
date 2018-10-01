@@ -21,23 +21,24 @@ getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.o
   #cdms_host <- match.arg(cdms_host)
 
   # detail url
-  head_url <- paste0(cdms_host,'/services/api/v1/dataset/getheadersdatafordataset')
+  req_url <- paste0(cdms_host,'/services/api/v1/dataset/getheadersdatafordataset')
 
   # ActivityID
   queryList <- list(id = datasetID)
 
   # GET request with query parameters
-  head_req <- httr::GET(head_url,
+  req <- httr::GET(req_url,
                         query = queryList)
 
 
-  httr::stop_for_status(head_req,
+  httr::stop_for_status(req,
                         task = paste0('query header records for datasetID = ', datasetID, ' from CDMS.'))
 
   # parse the response
-  head_con <- content(head_req, type = 'text', encoding = "UTF-8")
-  head_df <- fromJSON(head_con, flatten = TRUE)
+  req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE) %>%
+    select(HeaderID = Id, ActivityID = ActivityId, everything())
 
-  return(head_df)
+  return(df)
 
 }

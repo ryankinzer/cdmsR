@@ -1,0 +1,98 @@
+---
+title: "Accessing a Centralized Data Management System with R"
+author: "Ryan N. Kinzer"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Accessing a Centralized Data Management System with R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+if(!require(devtools)){
+  install.packages('devtools')
+}
+
+if(!require(httr)){
+  install.packages('httr')
+}
+
+if(!require(jsonlite)){
+  install.packages('jsonlite')
+}
+```
+
+
+```{r}
+if(!require(cdmsR)){
+devtools::install_github('ryankinzer/cdmsR')
+}
+
+library(cdmsR)
+```
+
+```{r}
+username <- "ryank"
+api_key <- "153054453130053281239582410943958241094537726538860542262540750542640375910349488180619663"
+```
+
+```{r}
+cdmsLogin(username, api_key, cdms_host = "https://cdms.nptfisheries.org")
+```
+
+```{r}
+# get all possible datastores in CDMS
+datastores <- getDatastores(cdms_host = "https://cdms.nptfisheries.org")
+
+head(datastores[1:3,])
+```
+
+```{r}
+# get all current project in CDMS
+projects <- getProjects(cdms_host = "https://cdms.nptfisheries.org")
+
+head(projects)
+```
+
+```{r}
+# get available datasets for Imnaha River Steelhead Abundance Monitoring
+project_data <- getProjectDatasets(projectID = 11055, cdms_host = "https://cdms.nptfisheries.org")
+
+head(project_data)
+```
+
+```{r}
+dataset_activities <- getActivities(datasetID = 4316, cdms_host = "https://cdms.nptfisheries.org")
+
+head(dataset_activities)
+```
+
+```{r}
+dataset_headers <- getHeaderRecords(datasetID = 4316, cdms_host = "https://cdms.nptfisheries.org")
+
+head(dataset_headers)
+```
+
+```{r}
+activity_details <- getDetailRecords(activityID = 34628, cdms_host = "https://cdms.nptfisheries.org")
+
+head(activity_details)
+```
+
+```{r}
+#dataset <- getProjectData(datasetID = 4316, cdms_host = "https://cdms.nptfisheries.org")
+```
+
+
+```{r}
+#big_bucket <- getDatasetView(datastoreID = 68, MPG = NULL, POP = NULL, StreamName = NULL, SurveyYear = NULL,
+#                           cdms_host = "https://cdms.nptfisheries.org")
+```

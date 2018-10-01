@@ -21,23 +21,25 @@ getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'
   #cdms_host <- match.arg(cdms_host)
 
   # detail url
-  acts_url <- paste0(cdms_host,'/services/api/v1/activity/getdatasetactivitiesview')
+  req_url <- paste0(cdms_host,'/services/api/v1/activity/getdatasetactivitiesview')
 
   # ActivityID
   queryList <- list(id = datasetID)
 
   # GET request with query parameters
-  acts_req <- httr::GET(acts_url,
+  req <- httr::GET(req_url,
                         query = queryList)
 
 
-  httr::stop_for_status(acts_req,
+  httr::stop_for_status(req,
                         task = paste0('query activity records for datasetID = ', datasetID, ' from CDMS.'))
 
   # parse the response
-  acts_con <- content(acts_req, type = 'text', encoding = "UTF-8")
-  acts_df <- fromJSON(acts_con, flatten = TRUE)
+  req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
 
-  return(acts_df)
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE) %>%
+    select(ActivityID = Id, everything())
+
+  return(df)
 
 }
