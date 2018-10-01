@@ -38,8 +38,9 @@ getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
 
-  df <- jsonlite::fromJSON(req_con, flatten = TRUE) dplyr::"%>%"
-    dplyr::select(ActivityID = Id, everything())
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE)
+
+  df <- dplyr::select(df, ActivityID = Id, everything())
 
   return(df)
 

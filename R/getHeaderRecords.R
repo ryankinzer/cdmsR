@@ -36,8 +36,10 @@ getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.o
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
-  df <- jsonlite::fromJSON(req_con, flatten = TRUE) dplyr::"%>%"
-    dplyr::select(HeaderID = Id, ActivityID = ActivityId, everything())
+
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE)
+
+  df <- dplyr::select(df, HeaderID = Id, ActivityID = ActivityId, everything())
 
   return(df)
 
