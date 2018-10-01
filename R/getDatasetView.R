@@ -4,13 +4,17 @@
 #'
 #' @param datastoreID for CDMS dataset.
 #'
+#' @param Species a character string of either Chinook salmon, Steelhead, or Bull trout, default Chinook salmon
+#'
+#' @param Run a character string of either Spring, Spring/summer, Summer, Fall, or Winter, default Spring/summer
+#'
+#' @param SurveyYear a two dimension vector consisting of the start year and last year of interest
+#'
 #' @param MPG
 #'
 #' @param POP
 #'
 #' @param StreamName
-#'
-#' @param SurveyYear
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
@@ -22,23 +26,23 @@
 #' @export
 #' @return NULL
 
-getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
+getDatasetView <- function(datastoreID, Species = c('Chinook salmon', 'Steelhead', 'Bull trout', 'Coho salmon'),
+                           Run = c('Spring', 'Spring/summer', 'Summer', 'Fall', 'Winter'),
+                           SurveyYear = c(1990, 2050),
                            MPG = NULL, POP = NULL, StreamName = NULL,
-                           SurveyYear = NULL,
                            cdms_host = 'https://cdms.nptfisheries.org'){
+
+  Species <- match.arg(Species)
+  Run <- match.arg(Run)
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
   #cdms_host <- match.arg(cdms_host)
 
-  if(!is.null(Species)){
-    Species <-  paste0("'",Species,"'")
-  }
+  Species <-  paste0("'",Species,"'")
 
-  if(!is.null(Run)){
-    Run <- paste0("'",Run,"'")
-  }
+  Run <- paste0("'",Run,"'")
 
   if(!is.null(MPG)){
     MPG <- paste0("'",MPG,"'")
@@ -60,6 +64,8 @@ getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
   queryList <- list(id = datastoreID,
                     Species = Species,
                     Run = Run,
+                    StartYear = SurveyYear[1],
+                    EndYear = SurveyYear[2],
                     MPG = MPG,
                     POP = POP,
                     StreamName = StreamName,
