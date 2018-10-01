@@ -10,7 +10,7 @@
 #'
 #' @examples getHeaderRecords(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
 #'
-#' @import httr jsonlite
+#' @import httr jsonlite dplyr
 #' @export
 #' @return NULL
 
@@ -18,6 +18,7 @@ getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.o
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
+  library(dplyr)
   #cdms_host <- match.arg(cdms_host)
 
   # detail url

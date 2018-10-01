@@ -53,7 +53,6 @@ getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
   }
 
 
-
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/dataset/getfulldatasetview')
 
@@ -66,7 +65,7 @@ getDatasetView <- function(datastoreID, Species = NULL, Run = NULL,
                     StreamName = StreamName,
                     SurveyYear = SurveyYear)
 
-  modify_url(req_url, query = queryList)
+  #modify_url(req_url, query = queryList)
 
   # GET request with query parameters
   req <- httr::GET(req_url,

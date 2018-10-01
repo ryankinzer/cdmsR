@@ -10,11 +10,13 @@
 #'
 #' @examples getActivities(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
 #'
-#' @import httr jsonlite
+#' @import httr jsonlite dplyr
 #' @export
 #' @return NULL
 
 getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'){
+
+  library(dplyr)
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 

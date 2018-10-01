@@ -10,11 +10,13 @@
 #'
 #' @examples getProjectDatasets(projectID, cdms_host = 'https://cdms.nptfisheries.org')
 #'
-#' @import httr jsonlite
+#' @import httr jsonlite dplyr
 #' @export
 #' @return NULL
 #'
 getProjectDatasets <- function(projectID, cdms_host = 'https://cdms.nptfisheries.org'){
+
+  library(dplyr)
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
