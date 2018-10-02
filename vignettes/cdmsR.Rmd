@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
+```{r eval = FALSE}
 if(!require(devtools)){
   install.packages('devtools')
 }
@@ -35,11 +35,13 @@ if(!require(jsonlite)){
 ```
 
 
-```{r}
+```{r eval = FALSE}
 if(!require(cdmsR)){
 devtools::install_github('ryankinzer/cdmsR')
 }
+```
 
+```{r}
 library(cdmsR)
 ```
 
@@ -99,7 +101,7 @@ head(dataset)
 
 
 ```{r}
-big_bucket <- getDatasetView(datastoreID = 68, Species = 'Steelhead', Run = 'Summer', MPG = NULL, POP = NULL, StreamName = NULL, SurveyYear = 2017, cdms_host = "https://cdms.nptfisheries.org")
+big_bucket <- getDatasetView(datastoreID = 68, Species = 'Steelhead', Run = 'Summer', MPG = NULL, POP = NULL, StreamName = NULL, SurveyYear = c(2000,2017), cdms_host = "https://cdms.nptfisheries.org")
 
 head(big_bucket)
 ```
