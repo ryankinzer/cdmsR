@@ -37,7 +37,8 @@ cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.
 
   #warn_for_status(r)
   #stop_for_status(auth, task = paste0('login to ', cdms_host))
-  user_info <- httr::content(auth, "parsed", "application/json", encoding = "UTF-8")[[3]]
+  #user_info <- httr::content(auth, "parsed", "application/json", encoding = "UTF-8")[[3]]
+  user_info <- httr::content(auth, "parsed", encoding = "UTF-8")[[3]]
   s_code <- auth$status_code
 
   if(status_code(auth)==200){
