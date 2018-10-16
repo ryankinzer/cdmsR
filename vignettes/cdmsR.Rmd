@@ -55,7 +55,7 @@ login_status <- cdmsLogin(username, api_key, cdms_host = "https://cdms.nptfisher
 ```
 
 ```{r}
-user_info <- content(login_status, "parsed", encoding = "UTF-8")[[3]]
+user_info <- httr::content(login_status, "parsed", encoding = "UTF-8")[[3]]
 user_info$Fullname
 ```
 
