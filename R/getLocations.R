@@ -1,15 +1,13 @@
 #' @title getLocations:
 #'
-#' @description
+#' @description get all locations in CDMS.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getLocations(cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite dplyr
 #' @export
+#'
 #' @return NULL
 #'
 #'
@@ -32,8 +30,9 @@ getLocations <- function(cdms_host = 'https://cdms.nptfisheries.org'){
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
 
-  df <- jsonlite::fromJSON(req_con) %>%
-    dplyr::select(-LocationType, -WaterBody)
+  df <- jsonlite::fromJSON(req_con)
+
+  df <- dplyr::select(df, -LocationType, -WaterBody)
 
   return(df)
 

@@ -1,6 +1,6 @@
 #' @title getHeaderRecords:
 #'
-#' @description
+#' @description get header records for a given activity.
 #'
 #' @param datasetID for CDMS dataset.
 #'
@@ -8,10 +8,8 @@
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getHeaderRecords(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite dplyr
 #' @export
+#'
 #' @return NULL
 
 getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'){
@@ -39,7 +37,7 @@ getHeaderRecords <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.o
 
   df <- jsonlite::fromJSON(req_con, flatten = TRUE)
 
-  df <- dplyr::select(df, HeaderID = Id, ActivityID = ActivityId, everything())
+  df <- dplyr::select(df, HeaderID = Id, ActivityID = ActivityId, dplyr::everything())
 
   return(df)
 

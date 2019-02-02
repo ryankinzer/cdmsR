@@ -1,6 +1,6 @@
 #' @title getActivities:
 #'
-#' @description
+#' @description get all activities in CDMS.
 #'
 #' @param datasetID for CDMS dataset.
 #'
@@ -8,10 +8,8 @@
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getActivities(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite dplyr
 #' @export
+#'
 #' @return NULL
 
 getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'){
@@ -27,6 +25,10 @@ getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'
   # ActivityID
   queryList <- list(id = datasetID)
 
+  #httr::modify_url(req_url, query = queryList)
+  # Should be:
+  # https://cdms.nptfisheries.org/services/api/v1/activity/getdatasetactivitiesview?id=4335
+
   # GET request with query parameters
   req <- httr::GET(req_url,
                         query = queryList)
@@ -40,7 +42,7 @@ getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'
 
   df <- jsonlite::fromJSON(req_con, flatten = TRUE)
 
-  df <- dplyr::select(df, ActivityID = Id, everything())
+  df <- dplyr::select(df, ActivityID = Id, dplyr::everything())
 
   return(df)
 

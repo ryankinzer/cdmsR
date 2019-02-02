@@ -10,20 +10,17 @@ getDatasetView(datastoreID, projectID = NULL, waterbodyID = NULL,
 \arguments{
 \item{datastoreID}{for CDMS dataset.}
 
-\item{projectID}{}
+\item{projectID}{for project of interest in CDMS project table.}
 
-\item{waterbodyID}{}
+\item{waterbodyID}{for stream in CDMS waterbodies table.}
 
-\item{locationID}{}
+\item{locationID}{from location table.}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-
-}
-\examples{
-getDatasetView(datastoreID, cdms_host = 'https://cdms.nptfisheries.org')
-
+get the big bucket for a given dataset, filtered by project,
+ waterbody and/or location.
 }
 \author{
 Ryan Kinzer

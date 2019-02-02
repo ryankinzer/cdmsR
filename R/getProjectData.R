@@ -1,17 +1,15 @@
 #' @title getProjectData:
 #'
-#' @description
+#' @description get all records for a given project dataset.
 #'
-#' @param datastoreID for CDMS dataset.
+#' @param datasetID for CDMS dataset.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getProjectData(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite
 #' @export
+#'
 #' @return NULL
 #'
 getProjectData <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'){
@@ -37,6 +35,7 @@ getProjectData <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
+
   df <- jsonlite::fromJSON(req_con, flatten = TRUE)
 
   df <- return(df)

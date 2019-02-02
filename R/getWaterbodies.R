@@ -1,17 +1,13 @@
 #' @title getWaterbodies:
 #'
-#' @description
-#'
-#' @param datastoreID for CDMS dataset.
+#' @description get all waterbodies listed in waterbodies table.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getWaterbodies(cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite
 #' @export
+#'
 #' @return NULL
 #'
 #'

@@ -1,6 +1,6 @@
 #' @title getDetailRecords:
 #'
-#' @description
+#' @description get detail records for a given activity.
 #'
 #' @param activityID for CDMS dataset.
 #'
@@ -8,10 +8,8 @@
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getDetailRecords(activityID, cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite
 #' @export
+#'
 #' @return NULL
 
 getDetailRecords <- function(activityID, cdms_host = 'https://cdms.nptfisheries.org'){

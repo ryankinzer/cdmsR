@@ -12,11 +12,7 @@ getDetailRecords(activityID, cdms_host = "https://cdms.nptfisheries.org")
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-
-}
-\examples{
-getDetailRecords(activityID, cdms_host = 'https://cdms.nptfisheries.org')
-
+get detail records for a given activity.
 }
 \author{
 Ryan Kinzer

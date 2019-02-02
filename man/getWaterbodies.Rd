@@ -8,15 +8,9 @@ getWaterbodies(cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{datastoreID}{for CDMS dataset.}
 }
 \description{
-
-}
-\examples{
-getWaterbodies(cdms_host = 'https://cdms.nptfisheries.org')
-
+get all waterbodies listed in waterbodies table.
 }
 \author{
 Ryan Kinzer

@@ -12,11 +12,7 @@ getHeaderRecords(datasetID, cdms_host = "https://cdms.nptfisheries.org")
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-
-}
-\examples{
-getHeaderRecords(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
-
+get header records for a given activity.
 }
 \author{
 Ryan Kinzer

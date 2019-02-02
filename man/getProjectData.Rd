@@ -7,16 +7,12 @@
 getProjectData(datasetID, cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
-\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
+\item{datasetID}{for CDMS dataset.}
 
-\item{datastoreID}{for CDMS dataset.}
+\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-
-}
-\examples{
-getProjectData(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
-
+get all records for a given project dataset.
 }
 \author{
 Ryan Kinzer

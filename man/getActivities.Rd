@@ -12,11 +12,7 @@ getActivities(datasetID, cdms_host = "https://cdms.nptfisheries.org")
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-
-}
-\examples{
-getActivities(datasetID, cdms_host = 'https://cdms.nptfisheries.org')
-
+get all activities in CDMS.
 }
 \author{
 Ryan Kinzer

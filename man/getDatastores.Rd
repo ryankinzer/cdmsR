@@ -8,15 +8,9 @@ getDatastores(cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{datastoreID}{for CDMS dataset.}
 }
 \description{
-
-}
-\examples{
-getDatastores(cdms_host = 'https://cdms.nptfisheries.org')
-
+gets all the available datasets from the datastore table.
 }
 \author{
 Ryan Kinzer

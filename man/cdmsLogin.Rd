@@ -22,7 +22,8 @@ The function passes username and password creditianls to the
   \code{cdmsLogin()} to be re-run to gain access.
 }
 \examples{
-cdmsLogin(username = 'your_username', api_key = 'your_key', cdms_host = 'https://cdms.nptfisheries.org')
+cdmsLogin(username = 'username', api_key = 'key',
+ cdms_host = 'https://cdms.nptfisheries.org')
 
 }
 \author{

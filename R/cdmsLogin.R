@@ -15,10 +15,11 @@
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples cdmsLogin(username = 'your_username', api_key = 'your_key', cdms_host = 'https://cdms.nptfisheries.org')
+#' @examples cdmsLogin(username = 'username', api_key = 'key',
+#'  cdms_host = 'https://cdms.nptfisheries.org')
 #'
-#' @import httr jsonlite
 #' @export
+#'
 #' @return NULL
 #'
 cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.org'){
@@ -33,7 +34,7 @@ cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.
 
   creds <- jsonlite::toJSON(list(Username = username, Password = api_key), auto_unbox = T)
 
-  auth <- httr::POST(req_url, add_headers(prefer = "respond-async"), content_type_json(), body = creds)
+  auth <- httr::POST(req_url, httr::add_headers(prefer = "respond-async"), httr::content_type_json(), body = creds)
 
   #warn_for_status(r)
   #stop_for_status(auth, task = paste0('login to ', cdms_host))
@@ -41,7 +42,7 @@ cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.
   user_info <- httr::content(auth, "parsed", encoding = "UTF-8")[[3]]
   s_code <- auth$status_code
 
-  if(status_code(auth)==200){
+  if(s_code == 200){
     cat(paste0('Logged in as: ', user_info$Fullname,'\n'))
   }
 

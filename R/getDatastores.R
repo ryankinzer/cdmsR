@@ -1,17 +1,13 @@
 #' @title getDatastores:
 #'
-#' @description
-#'
-#' @param datastoreID for CDMS dataset.
+#' @description gets all the available datasets from the datastore table.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getDatastores(cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite
 #' @export
+#'
 #' @return NULL
 #'
 getDatastores <- function(cdms_host = 'https://cdms.nptfisheries.org'){

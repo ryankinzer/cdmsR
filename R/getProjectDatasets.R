@@ -1,17 +1,15 @@
 #' @title getProjectDatasets:
 #'
-#' @description
+#' @description get a list of datasets associated with a project.
 #'
-#' @param datastoreID for CDMS dataset.
+#' @param projectID for CDMS projects.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getProjectDatasets(projectID, cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite dplyr
 #' @export
+#'
 #' @return NULL
 #'
 getProjectDatasets <- function(projectID, cdms_host = 'https://cdms.nptfisheries.org'){

@@ -4,19 +4,16 @@
 \alias{getProjectDatasets}
 \title{getProjectDatasets:}
 \usage{
-getProjectDatasets(projectID, cdms_host = "https://cdms.nptfisheries.org")
+getProjectDatasets(projectID,
+  cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
-\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
+\item{projectID}{for CDMS projects.}
 
-\item{datastoreID}{for CDMS dataset.}
+\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-
-}
-\examples{
-getProjectDatasets(projectID, cdms_host = 'https://cdms.nptfisheries.org')
-
+get a list of datasets associated with a project.
 }
 \author{
 Ryan Kinzer

@@ -1,23 +1,22 @@
 #' @title getDatasetView:
 #'
-#' @description
+#' @description get the big bucket for a given dataset, filtered by project,
+#'  waterbody and/or location.
 #'
 #' @param datastoreID for CDMS dataset.
 #'
-#' @param projectID
+#' @param projectID for project of interest in CDMS project table.
 #'
-#' @param waterbodyID
+#' @param waterbodyID for stream in CDMS waterbodies table.
 #'
-#' @param locationID
+#' @param locationID from location table.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Ryan Kinzer
 #'
-#' @examples getDatasetView(datastoreID, cdms_host = 'https://cdms.nptfisheries.org')
-#'
-#' @import httr jsonlite
 #' @export
+#'
 #' @return NULL
 
 getDatasetView <- function(datastoreID, projectID = NULL, waterbodyID = NULL, locationID = NULL,

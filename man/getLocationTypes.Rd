@@ -8,15 +8,9 @@ getLocationTypes(cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{datastoreID}{for CDMS dataset.}
 }
 \description{
-
-}
-\examples{
-getLocationTypes(cdms_host = 'https://cdms.nptfisheries.org')
-
+get all available location types from LocationType table.
 }
 \author{
 Ryan Kinzer

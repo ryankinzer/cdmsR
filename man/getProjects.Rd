@@ -8,15 +8,9 @@ getProjects(cdms_host = "https://cdms.nptfisheries.org")
 }
 \arguments{
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{datastoreID}{for CDMS dataset.}
 }
 \description{
-
-}
-\examples{
-getProjects(cdms_host = 'https://cdms.nptfisheries.org')
-
+get all the available projects in CDMS.
 }
 \author{
 Ryan Kinzer
