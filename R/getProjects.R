@@ -32,7 +32,7 @@ getProjects <- function(cdms_host = 'https://cdms.nptfisheries.org'){
 
   df <- jsonlite::fromJSON(req_con)
 
-  df <- dplyr::select(df, ProjectId = Id, Name:EndDate, Metadata)
+  #df <- dplyr::select(df, ProjectId = Id, Name:EndDate, Metadata)
 
   return(df)
 
