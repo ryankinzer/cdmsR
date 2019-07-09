@@ -5,6 +5,14 @@
 #'
 #' @param datastoreID for CDMS dataset.
 #'
+#' @param species for Species of interest
+#'
+#' @param run for run associated with species
+#'
+#' @param pop_name for Population of interest
+#'
+#' @param survey_year year of interest.
+#'
 #' @param projectID for project of interest in CDMS project table.
 #'
 #' @param waterbodyID for stream in CDMS waterbodies table.
@@ -19,7 +27,7 @@
 #'
 #' @return NULL
 
-getDatasetView <- function(datastoreID, projectID = NULL, waterbodyID = NULL, locationID = NULL,
+getDatasetView <- function(datastoreID, species = NULL, run = NULL, pop_name = NULL, survey_year = NULL, projectID = NULL, waterbodyID = NULL, locationID = NULL,
                            cdms_host = 'https://cdms.nptfisheries.org'){
 
   # Species <- match.arg(Species)
@@ -58,18 +66,20 @@ getDatasetView <- function(datastoreID, projectID = NULL, waterbodyID = NULL, lo
 
   # ActivityID
   queryList <- list(id = datastoreID,
+                    Species = species,
+                    Run = run,
+                    POP_NAME = pop_name,
+                    SurveyYear = survey_year,
                     ProjectId = projectID,
                     WaterBodyId = waterbodyID,
                     LocationId = locationID)
-                    # Species = Species,
-                    # Run = Run,
                     # StartYear = SurveyYear[1],
                     # EndYear = SurveyYear[2],
                     # MPG = MPG,
                     # POP = POP,
                     # StreamName = StreamName)
 
-  #httr::modify_url(req_url, query = queryList)
+  # httr::modify_url(req_url, query = queryList)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
