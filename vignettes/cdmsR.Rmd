@@ -69,8 +69,8 @@ head(location_type)
 ```
 
 ```{r}
-locations <- getLocations(cdms_host = "https://cdms.nptfisheries.org")
-head(locations)
+# project_info <- getProject(projectID = 11052, cdms_host = "https://cdms.nptfisheries.org")
+# head(project_info)
 ```
 
 
@@ -86,16 +86,6 @@ head(dataset_activities[,1:5])
 dataset_headers <- getHeaderRecords(datasetID = 4334, cdms_host = "https://cdms.nptfisheries.org")
 
 head(dataset_headers[,1:5])
-```
-
-```{r}
-activity_details <- getDetailRecords(activityID = 43954, cdms_host = "https://cdms.nptfisheries.org")
-head(activity_details)
-```
-
-```{r}
-dataset <- getProjectData(datasetID = 4334, cdms_host = "https://cdms.nptfisheries.org")
-head(dataset)
 ```
 
 ```{r}
