@@ -6,18 +6,16 @@
 \usage{
 getDatasetView(
   datastoreID,
-  species = NULL,
-  run = NULL,
-  pop_name = NULL,
-  survey_year = NULL,
   projectID = NULL,
-  waterbodyID = NULL,
-  locationID = NULL,
   cdms_host = "https://npt-cdms.nezperce.org"
 )
 }
 \arguments{
 \item{datastoreID}{for CDMS dataset.}
+
+\item{projectID}{for project of interest in CDMS project table.}
+
+\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 
 \item{species}{for Species of interest}
 
@@ -27,13 +25,9 @@ getDatasetView(
 
 \item{survey_year}{year of interest.}
 
-\item{projectID}{for project of interest in CDMS project table.}
-
 \item{waterbodyID}{for stream in CDMS waterbodies table.}
 
 \item{locationID}{from location table.}
-
-\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
 get the big bucket for a given dataset, filtered by project,
