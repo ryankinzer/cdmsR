@@ -29,9 +29,10 @@ library(cdmsR)
 
 ```{r}
 username <- 'api_user'
-api_key <- "153054453130053281239582410943958241094537726538860542262540750542640375910349488180619663"
-cdms_host <- 'https://cdms.nptfisheries.org'
-#cdms_host <- 'localhost'
+api_key <- 'api_user'
+cdms_host <- 'https://npt-cdms.nezperce.org'
+#cdms_host <- 'http://localhost:80/'
+#api_key <- "153054453130053281239582410943958241094537726538860542262540750542640375910349488180619663"
 ```
 
 ```{r}
@@ -40,56 +41,67 @@ login_status <- cdmsLogin(username, api_key, cdms_host = cdms_host)
 
 ```{r}
 # get all possible datastores in CDMS
-datastores <- getDatastores(cdms_host = "https://cdms.nptfisheries.org")
-datastores[,1:2]
+datastores <- getDatastores(cdms_host = "https://npt-cdms.nezperce.org")
+head(datastores[,1:2])
 ```
 
 ```{r}
 # get all current project in CDMS
-projects <- getProjects(cdms_host = "https://cdms.nptfisheries.org")
+projects <- getProjects(cdms_host = "https://npt-cdms.nezperce.org")
+head(projects[,1:3])
+```
 
-head(projects[,1:2])
+```{r}
+# get project information as a list of various objects
+jcape <- getProject(projectID = 11052, cdms_host = "https://npt-cdms.nezperce.org")
+names(jcape)
+```
+
+```{r}
+# extract project locations from the list
+jcape_locs <- jcape$Locations
+head(jcape_locs[1:3])
 ```
 
 ```{r}
 # get available datasets for Imnaha River Steelhead Abundance Monitoring
-project_data <- getProjectDatasets(projectID = 11055, cdms_host = "https://cdms.nptfisheries.org")
-
+project_data <- getProjectDatasets(projectID = 11055, cdms_host = "https://npt-cdms.nezperce.org")
 head(project_data[,1:4])
 ```
 
 ```{r}
-waterbodies <- getWaterbodies(cdms_host = "https://cdms.nptfisheries.org")
+# get all waterbodies stored in CDMS
+waterbodies <- getWaterbodies(cdms_host = "https://npt-cdms.nezperce.org")
 head(waterbodies)
 ```
 
 ```{r}
-location_type <- getLocationTypes(cdms_host = "https://cdms.nptfisheries.org")
+# get the type of locations being stored in CDMS
+location_type <- getLocationTypes(cdms_host = "https://npt-cdms.nezperce.org")
 head(location_type)
 ```
 
-```{r}
-# project_info <- getProject(projectID = 11052, cdms_host = "https://cdms.nptfisheries.org")
-# head(project_info)
-```
-
-
 
 ```{r}
-# get available activities for Imnaha River Steelhead Abundance Monitoring Redd data (datasetID = 4334).
-dataset_activities <- getActivities(datasetID = 4334, cdms_host = "https://cdms.nptfisheries.org")
-
+# get all available activities for Imnaha River steelhead redd surveys (datasetID = 4334).
+# BE CAREFUL: this request returns all data entered into CDMS including original and all corrected versions
+dataset_activities <- getActivities(datasetID = 4334, cdms_host = "https://npt-cdms.nezperce.org")
 head(dataset_activities[,1:5])
 ```
 
 ```{r}
-dataset_headers <- getHeaderRecords(datasetID = 4334, cdms_host = "https://cdms.nptfisheries.org")
-
+# return only the current version of header records for Imnaha River Steelhead redd surveys
+dataset_headers <- getHeaderRecords(datasetID = 4334, cdms_host = "https://npt-cdms.nezperce.org")
 head(dataset_headers[,1:5])
 ```
 
 ```{r}
-big_bucket <- getDatasetView(datastoreID = 78, projectID = NULL, waterbodyID = NULL, locationID = NULL, cdms_host = "https://cdms.nptfisheries.org")
+# get the current version of header and detail records for all data stored in CDMS
+all_redd_data <- getDatasetView(datastoreID = 78, projectID = NULL,
+                             cdms_host = "https://npt-cdms.nezperce.org")
 
-head(big_bucket)
+head(all_redd_data)
+
+jcape_redd_data <- getDatasetView(datastoreID = 78, projectID = 11052,
+                             cdms_host = "https://npt-cdms.nezperce.org")
 ```

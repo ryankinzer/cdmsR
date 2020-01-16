@@ -4,7 +4,7 @@
 \alias{getWaterbodies}
 \title{getWaterbodies:}
 \usage{
-getWaterbodies(cdms_host = "https://cdms.nptfisheries.org")
+getWaterbodies(cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}

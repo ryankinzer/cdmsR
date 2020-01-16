@@ -12,7 +12,7 @@
 #'
 #' @return NULL
 
-getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'){
+getActivities <- function(datasetID, cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
@@ -27,7 +27,7 @@ getActivities <- function(datasetID, cdms_host = 'https://cdms.nptfisheries.org'
 
   #httr::modify_url(req_url, query = queryList)
   # Should be:
-  # https://cdms.nptfisheries.org/services/api/v1/activity/getdatasetactivitiesview?id=4335
+  # https://npt-cdms.nezperce.org/services/api/v1/activity/getdatasetactivitiesview?id=4335
 
   # GET request with query parameters
   req <- httr::GET(req_url,

@@ -4,7 +4,7 @@
 \alias{getHeaderRecords}
 \title{getHeaderRecords:}
 \usage{
-getHeaderRecords(datasetID, cdms_host = "https://cdms.nptfisheries.org")
+getHeaderRecords(datasetID, cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{datasetID}{for CDMS dataset.}

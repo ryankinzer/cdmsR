@@ -10,7 +10,7 @@
 #'
 #' @return NULL
 #'
-getDatastores <- function(cdms_host = 'https://cdms.nptfisheries.org'){
+getDatastores <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

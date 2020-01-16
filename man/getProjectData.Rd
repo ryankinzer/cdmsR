@@ -4,7 +4,7 @@
 \alias{getProjectData}
 \title{getProjectData:}
 \usage{
-getProjectData(datasetID, cdms_host = "https://cdms.nptfisheries.org")
+getProjectData(datasetID, cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{datasetID}{for CDMS dataset.}

@@ -27,35 +27,29 @@
 #'
 #' @return NULL
 
-getDatasetView <- function(datastoreID, species = NULL, run = NULL, pop_name = NULL, survey_year = NULL, projectID = NULL, waterbodyID = NULL, locationID = NULL,
-                           cdms_host = 'https://cdms.nptfisheries.org'){
+getDatasetView <- function(datastoreID, projectID = NULL,
+                           # survey_year, species = c('Chinook salmon', 'Steelhead'),
+                           # run = c('Spring/summer', 'Summer', 'Fall'),
+                           # pop_name = NULL, waterbodyID = NULL,
+                           # locationID = NULL,
+                           cdms_host = 'https://npt-cdms.nezperce.org'){
 
-  # Species <- match.arg(Species)
-  # Run <- match.arg(Run)
-  #
-  # stopifnot(!is.null(SurveyYear))
-  #
-  # if(length(SurveyYear) == 1){
-  #   SurveyYear <- c(SurveyYear,SurveyYear)
-  # }
-
-  # must login into CDMS to obtain cookie
-  # requires httr, jsonlite packages
-
-  #cdms_host <- match.arg(cdms_host)
-
+  # Species <- match.arg(species)
   # Species <-  paste0("'",Species,"'")
   #
+  # Run <- match.arg(run)
   # Run <- paste0("'",Run,"'")
   #
-  # if(!is.null(MPG)){
-  #   MPG <- paste0("'",MPG,"'")
+  # stopifnot(!is.null(survey_year))
+  #
+  # if(length(survey_year) == 1){
+  #   survey_year <- c(survey_year,survey_year)
   # }
   #
-  # if(!is.null(POP)){
-  #   POP <- paste0("'",POP,"'")
+  # if(!is.null(pop_name)){
+  #   pop_name <- paste0("'",pop_name,"'")
   # }
-  #
+
   # if(!is.null(StreamName)){
   #   StreamName <- paste0("'",StreamName,"'")
   # }
@@ -66,13 +60,13 @@ getDatasetView <- function(datastoreID, species = NULL, run = NULL, pop_name = N
 
   # ActivityID
   queryList <- list(id = datastoreID,
-                    Species = species,
-                    Run = run,
-                    POP_NAME = pop_name,
-                    SurveyYear = survey_year,
-                    ProjectId = projectID,
-                    WaterBodyId = waterbodyID,
-                    LocationId = locationID)
+                    # Species = species,
+                    # Run = run,
+                    # POP_NAME = pop_name,
+                    # SurveyYear = survey_year,
+                    ProjectId = projectID) #,
+                    # WaterBodyId = waterbodyID,
+                    # LocationId = locationID)
                     # StartYear = SurveyYear[1],
                     # EndYear = SurveyYear[2],
                     # MPG = MPG,

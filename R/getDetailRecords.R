@@ -12,7 +12,7 @@
 #'
 #' @return NULL
 
-getDetailRecords <- function(activityID, cdms_host = 'https://cdms.nptfisheries.org'){
+getDetailRecords <- function(activityID, cdms_host = 'https://npt-cdms.nezperce.org'){
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 

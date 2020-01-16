@@ -4,7 +4,7 @@
 \alias{getProject}
 \title{getProject:}
 \usage{
-getProject(projectID, cdms_host = "https://cdms.nptfisheries.org")
+getProject(projectID, cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{projectID}{for CDMS Project.}

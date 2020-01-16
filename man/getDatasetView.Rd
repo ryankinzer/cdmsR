@@ -4,10 +4,17 @@
 \alias{getDatasetView}
 \title{getDatasetView:}
 \usage{
-getDatasetView(datastoreID, species = NULL, run = NULL,
-  pop_name = NULL, survey_year = NULL, projectID = NULL,
-  waterbodyID = NULL, locationID = NULL,
-  cdms_host = "https://cdms.nptfisheries.org")
+getDatasetView(
+  datastoreID,
+  species = NULL,
+  run = NULL,
+  pop_name = NULL,
+  survey_year = NULL,
+  projectID = NULL,
+  waterbodyID = NULL,
+  locationID = NULL,
+  cdms_host = "https://npt-cdms.nezperce.org"
+)
 }
 \arguments{
 \item{datastoreID}{for CDMS dataset.}

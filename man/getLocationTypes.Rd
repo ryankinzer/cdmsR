@@ -4,7 +4,7 @@
 \alias{getLocationTypes}
 \title{getLocationTypes:}
 \usage{
-getLocationTypes(cdms_host = "https://cdms.nptfisheries.org")
+getLocationTypes(cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}

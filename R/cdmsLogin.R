@@ -16,13 +16,13 @@
 #' @author Ryan Kinzer
 #'
 #' @examples cdmsLogin(username = 'username', api_key = 'key',
-#'  cdms_host = 'https://cdms.nptfisheries.org')
+#'  cdms_host = 'https://npt-cdms.nezperce.org')
 #'
 #' @export
 #'
 #' @return NULL
 #'
-cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.org'){
+cdmsLogin <- function(username, api_key, cdms_host = 'https://npt-cdms.nezperce.org'){
 
   stopifnot(!is.null(username),
             !is.null(api_key))
@@ -30,7 +30,7 @@ cdmsLogin <- function(username, api_key, cdms_host = 'https://cdms.nptfisheries.
   #password <- encription_stuff(password)
 
   req_url <- paste0(cdms_host, '/services/api/v1/account/login')
-  #"https://cdms.nptfisheries.org/services/api/v1/account/login"
+  #"https://npt-cdms.nezperce.org/services/api/v1/account/login"
 
   creds <- jsonlite::toJSON(list(Username = username, Password = api_key), auto_unbox = T)
 

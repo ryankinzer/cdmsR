@@ -4,7 +4,7 @@
 \alias{getDetailRecords}
 \title{getDetailRecords:}
 \usage{
-getDetailRecords(activityID, cdms_host = "https://cdms.nptfisheries.org")
+getDetailRecords(activityID, cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{activityID}{for CDMS dataset.}

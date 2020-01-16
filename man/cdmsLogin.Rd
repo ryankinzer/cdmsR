@@ -4,7 +4,7 @@
 \alias{cdmsLogin}
 \title{cdmsLogin: Login to CDMS.}
 \usage{
-cdmsLogin(username, api_key, cdms_host = "https://cdms.nptfisheries.org")
+cdmsLogin(username, api_key, cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{username}{for CDMS.}
@@ -23,7 +23,7 @@ The function passes username and password creditianls to the
 }
 \examples{
 cdmsLogin(username = 'username', api_key = 'key',
- cdms_host = 'https://cdms.nptfisheries.org')
+ cdms_host = 'https://npt-cdms.nezperce.org')
 
 }
 \author{
