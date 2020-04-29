@@ -21,9 +21,7 @@ getAllFiles <- function(cdms_host = 'https://npt-cdms.nezperce.org/'){
 
                          if(class(tmp) == "data.frame") {
 
-                           tmp2 <- tmp[,-c(1,2)]   # remove silly nested dataframes
-
-                           return(tmp2)
+                           return(tmp)
 
                          } else {
 
