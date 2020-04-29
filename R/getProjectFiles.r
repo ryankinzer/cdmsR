@@ -31,6 +31,19 @@ getProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.or
 
   df <- jsonlite::fromJSON(req_con)
 
-  return(df)
+  if(class(df) == "data.frame") {
+
+    userinfo <- df[,2] %>%
+      select(Id, Fullname)
+
+    df <- df[,-c(1,2)] %>%
+      left_join(userinfo, by= c('UserId'='Id'))
+
+    return(df)
+
+  } else {
+
+    return(NULL)
+  }
 }
 
