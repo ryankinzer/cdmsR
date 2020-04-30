@@ -34,9 +34,12 @@ getProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.or
   if(class(df) == "data.frame") {
 
     userinfo <- df[,2] %>%
-      select(Id, Fullname)
+      select(Id, Fullname) %>%
+      distinct()
 
-    df <- df[,-c(1,2)] %>%
+    df <- df[,-c(1,2)]
+
+    df <- df %>%
       left_join(userinfo, by= c('UserId'='Id'))
 
     return(df)
