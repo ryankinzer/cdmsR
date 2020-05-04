@@ -17,6 +17,12 @@ getProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.or
 
   #cdms_host <- match.arg(cdms_host)
 
+  # this dataframe is from dbo.FileTypes
+  filetype_df <- data.frame(
+    Id = c(1:5,8:9),
+    FileType = c('Image', 'PDF', 'Word', 'Excel', 'Unknown', 'Text', 'CSV')
+  )
+
   # project url
   req_url <- paste0(cdms_host,'/services/api/v1/file/getprojectfiles?id=',ProjectId)
 
@@ -37,7 +43,8 @@ getProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.or
       select(Id, Fullname)
 
     df <- df[,-c(1,2)] %>%
-      left_join(userinfo, by= c('UserId'='Id'))
+      left_join(userinfo, by= c('UserId'='Id')) %>%
+      left_join(filetype_df, by = c('FileTypeId' = 'Id'))
 
     return(df)
 
