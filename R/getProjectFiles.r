@@ -20,7 +20,8 @@ getProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.or
   # copied from dbo.FileTypes
   filetypes_df <- data.frame(
     Id = c(1:5,8:9),
-    FileType = c('Image', 'PDF', 'Word', 'Excel', 'Unknown', 'Text', 'CSV')
+    FileType = c('Image', 'PDF', 'Word', 'Excel', 'Unknown', 'Text', 'CSV'),
+    stringsAsFactors = FALSE
   )
 
   # project url
