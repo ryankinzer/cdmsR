@@ -2,11 +2,9 @@
 #'
 #' @description Retrieve CDMS water temperature data between two dates.
 #'
-#' @param StartDate First date of desired date range.
+#' @param date_begin First date of desired date range.
 #'
-#' @param End Final Date of desired date range.
-#'
-#' @param projectID for project of interest in CDMS project table.
+#' @param date_end Final Date of desired date range.
 #'
 #' @param locationID from location table.
 #'
@@ -18,27 +16,21 @@
 #'
 #' @return NULL
 
-getWaterTemps <- function(start_date, end_date,  locationID = NULL,
+getWaterTemps <- function(date_begin, date_end,  locationID = NULL,
                           cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # Throw errors
-  {if(is.null(start_date) | !grepl('^\\d{2}-\\d{2}-\\d{4}$', start_date))stop("start_date must be provided as MM-DD-YYYY")}
-  {if(is.null(end_date) | !grepl('^\\d{2}-\\d{2}-\\d{4}$', end_date))stop("end_date must be provided as MM-DD-YYYY")}
-  {if(start_date >= end_date)stop('end_date must be after start_date (MM-DD-YYYY)')}
+  {if(is.null(date_begin) | !grepl('^\\d{4}-\\d{2}-\\d{2}$', date_begin))stop("date_begin must be provided as YYYY-MM-DD")}
+  {if(is.null(date_end) | !grepl('^\\d{4}-\\d{2}-\\d{2}$', date_end))stop("date_end must be provided as YYYY-MM-DD")}
+  {if(date_begin >= date_end)stop('date_end must be after date_begin (YYYY-MM-DD)')}
 
-  # TESTING
-  # start_date = '07-01-2018'
-  # # end_date = '06-30-2019'
-  # start_date <- '02-01-2020'
-  # end_date <- '10-31-2020'
-  # locationID = NULL
-  # cdms_host = 'http://localhost:80/'
+  # convert dates
+  date_begin <- lubridate::ymd(date_begin)
+  date_end <- lubridate::ymd(date_end)
 
-  # for whatever reason this seems necessary - especially for final filter.
-  dates <- c(lubridate::mdy(start_date), lubridate::mdy(end_date))
 
-  # loop through years
-  temp_data <- lubridate::year(dates[[1]]):lubridate::year(dates[[2]]) %>%
+  # loop
+  temp_data <- lubridate::year(date_begin):lubridate::year(date_end) %>%
     map_df(.f = function(.x){
       # build URL for API
       req_url <- paste0(cdms_host,'/services/api/v1/npt/getwatertempdata')
@@ -66,7 +58,8 @@ getWaterTemps <- function(start_date, end_date,  locationID = NULL,
   final_df <- temp_data %>%
     mutate(ReadingDate = lubridate::ymd_hms(ReadingDateTime),
            ReadingDate = lubridate::as_date(ReadingDate)) %>%
-    filter(between(ReadingDate, dates[[1]], dates[[2]]))
+    filter(between(ReadingDate, date_begin, date_end)) %>%
+    select(-ReadingDate)
 
   return(final_df)
 
