@@ -56,9 +56,7 @@ getDatasetView <- function(datastoreID, projectID = NULL,
 
 
   # detail url
-  # req_url <- paste0(cdms_host,'/services/api/v1/dataset/getfulldatasetview')
-  req_url <- paste0(cdms_host,'/services/api/v1/npt/getfulldatasetview')  # if we hide new NPT services in NPTController.cs, /npt/ replaces /dataset/ (DatasetController.cs)
-
+  req_url <- paste0(cdms_host,'/services/api/v1/npt/getfulldatasetview')
 
   # ActivityID
   queryList <- list(id = datastoreID,
