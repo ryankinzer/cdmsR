@@ -56,7 +56,7 @@ getDatasetView <- function(datastoreID, projectID = NULL,
 
 
   # detail url
-  req_url <- paste0(cdms_host,'/services/api/v1/dataset/getfulldatasetview')
+  req_url <- paste0(cdms_host,'/services/api/v1/npt/getfulldatasetview')
 
   # ActivityID
   queryList <- list(id = datastoreID,
