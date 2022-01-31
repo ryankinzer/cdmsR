@@ -2,6 +2,10 @@
 #'
 #' @description get data from
 #'
+#' @param SurveYear desired survey year (YYYY).  NULL returns all.
+#'
+#' @param GRSME_ONLY TRUE: Return only GRSME data. FALSE: Return all ODFW data.
+#'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Tyler Stright

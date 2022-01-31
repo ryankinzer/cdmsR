@@ -2,6 +2,12 @@
 #'
 #' @description get data from
 #'
+#' @param SurveYear desired survey year (YYYY).  NULL returns all.
+#'
+#' @param Project desired project acronym.  NULL returns all.
+#'
+#' @param LocationLabel desired Location label. NULL returns all.
+#'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Tyler Stright
