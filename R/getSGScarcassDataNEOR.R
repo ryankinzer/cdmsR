@@ -10,13 +10,22 @@
 #'
 #' @return NULL
 
-getSGScarcassDataNEOR <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+getSGScarcassDataNEOR <- function(SurveyYear = NULL,
+                                  GRSME_ONLY = TRUE,
+                                  cdms_host = 'https://npt-cdms.nezperce.org'){
+
+  if(GRSME_ONLY == TRUE) {cat('getSGScarcassDataNEOR: Returning only GRSME data.') }
+  else {cat('getSGScarcassDataNEOR: Returning all North East Oregon data (GRSME and ODFW).')}
+
+  if(!is.null(SurveyYear)) {
+    if(!grepl('\\d{4}', SurveyYear))stop("SurveyYear must be a 4-digit year (YYYY).")
+  }
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgscarcassdataneor')
 
   # ActivityID
-  queryList <- list(id = NULL)
+  queryList <- list(SurveyYear = SurveyYear)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -31,6 +40,11 @@ getSGScarcassDataNEOR <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
   df <- jsonlite::fromJSON(req_con, flatten = TRUE)
+
+  if(GRSME_ONLY) {
+    df <- df %>%
+      filter(Subbasin %in% c('Imnaha', 'Wallowa-Lostine', 'Wilderness-Wenaha', 'Wilderness-Minam'))
+  }
 
   return(df)
 

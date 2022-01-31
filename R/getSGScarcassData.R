@@ -10,13 +10,30 @@
 #'
 #' @return NULL
 
-getSGScarcassData <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+getSGScarcassData <- function(SurveyYear = NULL,
+                              Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
+                              LocationLabel = NULL,
+                              cdms_host = 'https://npt-cdms.nezperce.org'){
+
+  Project <- match.arg(Project)
+
+  if(!is.null(SurveyYear)) {
+    if(!grepl('\\d{4}', SurveyYear))stop("SurveyYear must be a 4-digit year (YYYY).")
+  }
+
+  # assign DatasetID (essentially project filter)
+  if(Project == 'All') {DatasetID <- NULL}
+  if(Project == 'IRSSSM') {DatasetID <- 4323} # 11055
+  if(Project == 'JCAPE') {DatasetID <- 4324} # 11052
+  if(Project == 'NPTH') {DatasetID <- 4325} # 11062
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgscarcassdata')
 
   # ActivityID
-  queryList <- list(id = NULL)
+  queryList <- list(SurveyYear = SurveyYear,
+                    DatasetID = DatasetID,
+                    LocationLabel = LocationLabel)
 
   # httr::modify_url(req_url, query = queryList)
 
