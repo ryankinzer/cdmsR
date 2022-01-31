@@ -10,13 +10,33 @@
 #'
 #' @return NULL
 
-getJuvSurvivalData <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+getJuvSurvivalData <- function(RST = c('All', 'Imnaha River', 'Johnson Creek', 'Lolo Creek', 'Newsome Creek', 'Secesh River', 'South Fork Clearwater River'),
+                               SpeciesRun = NULL, MigratoryYear = NULL, BroodYear = NULL, Origin = c('All', 'Hatchery', 'Natural'),
+                               cdms_host = 'https://npt-cdms.nezperce.org'){
+
+  RST <- match.arg(RST)
+  Origin <- match.arg(Origin)
+
+  if(Origin == 'All') { Origin <- NULL}
+
+  # generate location label
+  if(RST == 'All') { LocationLabel <- NULL}
+  if(RST == 'Imnaha River') { LocationLabel <- 'Imnaha River: Imnaha River RST'}
+  if(RST == 'Johnson Creek') { LocationLabel <-  'Johnson Creek: Johnson Creek RST'}
+  if(RST == 'Lolo Creek') { LocationLabel <-  'Lolo Creek: Lolo Creek RST'}
+  if(RST == 'Newsome Creek') { LocationLabel <-  'Newsome Creek: Newsome Creek RST'}
+  if(RST == 'Secesh River') { LocationLabel <-  'Secesh River: Lower Secesh River RST'}
+  if(RST == 'South Fork Clearwater River') { LocationLabel <-  'South Fork Clearwater River: SF Clearwater River RST'}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getjuvsurvivaldata')
 
   # ActivityID
-  queryList <- list(id = NULL)
+  queryList <- list(SpeciesRun = SpeciesRun,
+                    MigratoryYear = MigratoryYear,
+                    BroodYear = BroodYear,
+                    Origin = Origin,
+                    LocationLabel = LocationLabel)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -26,7 +46,7 @@ getJuvSurvivalData <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
 
 
   httr::stop_for_status(req,
-                        task = paste0('query all data records for SOMETHING from CDMS.'))
+                        task = paste0('query Juvenile Survival estimates from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
