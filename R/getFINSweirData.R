@@ -2,6 +2,14 @@
 #'
 #' @description get data from
 #'
+#' @param Facility desired FINS facility name. NULL returns all. Discover values: getFINSvalues()
+#'
+#' @param Species desired species. NULL returns all. Discover values: getFINSvalues()
+#'
+#' @param Run desired run of fish. NULL returns all.
+#'
+#' @param Sex desired sex of fish. NULL returns all.
+#'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Tyler Stright
@@ -10,7 +18,17 @@
 #'
 #' @return NULL
 
-getFINSweirData <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+getFINSweirData <- function(Facility = NULL,
+                            Species = NULL,
+                            Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
+                            Sex = c('All', 'Female', 'Male', 'Unknown'),
+                            Origin = NULL,
+                            cdms_host = 'https://npt-cdms.nezperce.org'){
+
+  Run = match.arg(Run)
+  Sex = match.arg(Sex)
+
+  cat('See the getFINSvalues() function for help determining field values.')
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfinsweirdata')
