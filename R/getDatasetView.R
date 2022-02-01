@@ -28,50 +28,14 @@
 #' @return NULL
 
 getDatasetView <- function(datastoreID, projectID = NULL,
-                           # survey_year, species = c('Chinook salmon', 'Steelhead'),
-                           # run = c('Spring/summer', 'Summer', 'Fall'),
-                           # pop_name = NULL, waterbodyID = NULL,
-                           # locationID = NULL,
                            cdms_host = 'https://npt-cdms.nezperce.org'){
-
-  # Species <- match.arg(species)
-  # Species <-  paste0("'",Species,"'")
-  #
-  # Run <- match.arg(run)
-  # Run <- paste0("'",Run,"'")
-  #
-  # stopifnot(!is.null(survey_year))
-  #
-  # if(length(survey_year) == 1){
-  #   survey_year <- c(survey_year,survey_year)
-  # }
-  #
-  # if(!is.null(pop_name)){
-  #   pop_name <- paste0("'",pop_name,"'")
-  # }
-
-  # if(!is.null(StreamName)){
-  #   StreamName <- paste0("'",StreamName,"'")
-  # }
-
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfulldatasetview')
 
   # ActivityID
   queryList <- list(id = datastoreID,
-                    # Species = species,
-                    # Run = run,
-                    # POP_NAME = pop_name,
-                    # SurveyYear = survey_year,
-                    ProjectId = projectID) #,
-                    # WaterBodyId = waterbodyID,
-                    # LocationId = locationID)
-                    # StartYear = SurveyYear[1],
-                    # EndYear = SurveyYear[2],
-                    # MPG = MPG,
-                    # POP = POP,
-                    # StreamName = StreamName)
+                    ProjectId = projectID)
 
   # httr::modify_url(req_url, query = queryList)
 
