@@ -28,13 +28,21 @@ getFINSweirData <- function(Facility = NULL,
   Run = match.arg(Run)
   Sex = match.arg(Sex)
 
-  cat('See the getFINSvalues() function for help determining field values.')
+  cat('Use getFINSvalues() to determine field values.')
+
+  # set NULLs
+  if(Run == 'All') { Run <- NULL}
+  if(Sex == 'All') { Sex <- NULL}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfinsweirdata')
 
   # ActivityID
-  queryList <- list(id = NULL)
+  queryList <- list(Facility = Facility,
+                    Species = Species,
+                    Run = Run,
+                    Sex = Sex,
+                    Origin = Origin)
 
   # httr::modify_url(req_url, query = queryList)
 
