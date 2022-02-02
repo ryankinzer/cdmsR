@@ -15,8 +15,11 @@
 #' @return NULL
 
 getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
-                      EventSite = c('All', 'IMNTRP', 'JOHTRP', 'LOLTRP', 'SECTRP', 'SFCTRP'),
+                      EventSite = c('All', 'JOHTRP', 'SECTRP', 'LSFTRP', 'JOHNSC',
+                                    'MCCA", "IMNTRP', 'NPTH", "SFCTRP', 'NEWSOC',
+                                    'CLWRSF', 'LOLOC', 'LOLTRP'),
                       EventType = c('All', 'Recapture', 'Mark', 'Recovery', 'Tally', 'Passive Recapture'),
+                      CaptureMethod = c('All', 'SCREWT', 'FYKNET', 'BSEINE', 'DIPNET', 'SHOCK'),
                       SRRcode = NULL,
                       MigrationYear = NULL,
                       BroodYear = NULL,
@@ -26,6 +29,7 @@ getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
   MRRProject <- match.arg(MRRProject)
   EventSite <- match.arg(EventSite)
   EventType <- match.arg(EventType)
+  CaptureMethod <- match.arg(CaptureMethod)
 
   # errors
   if(!is.null(MigrationYear)) {
@@ -44,7 +48,7 @@ getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
   if(MRRProject == 'All') { MRRProject <- NULL }
   if(EventSite == 'All') { EventSite <- NULL }
   if(EventType == 'All') { EventType <- NULL }
-
+  if(CaptureMethod == 'All') { CaptureMethod <- NULL }
 
   # build URL for API
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getp4data')
@@ -52,6 +56,7 @@ getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
   queryList <- list(MRRProject = MRRProject,
                     EventSite = EventSite,
                     EventType = EventType,
+                    CaptureMethod = CaptureMethod,
                     SRRcode = SRRcode,
                     MigrationYear = MigrationYear,
                     BroodYear = BroodYear,
