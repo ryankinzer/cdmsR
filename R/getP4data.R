@@ -2,11 +2,23 @@
 #'
 #' @description Retrieve p4 data (from CDMS) for all sites or a single site.
 #'
-#' @param migration_year Desired migration year (YYYY)
+#' @param MRRProject PTAGIS Coordinator Code. NULL returns all.
 #'
-#' @param event_site Desired event site. Leave NULL to retrieve all sites.
+#' @param EventSite Desired event site. NULL returns all sites.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param EventType Desired event type. NULL returns all event types.
+#'
+#' @param CaptureMethod Desired capture method. NULL returns all methods.
+#'
+#' @param SRRcode Desired species/run/rear code. NULL returns all species.
+#'
+#' @param MigrationYear Desired migration year (YYYY) NULL returns all years
+#'
+#' @param BroodYear  Desired brood Year (YYYY). NULL returns all years
+#'
+#' @param CalendarYear Desired calendar year (YYYY) NULL returns all years.
+#'
+#'#' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Tyler Stright
 #'
@@ -15,8 +27,11 @@
 #' @return NULL
 
 getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
-                      EventSite = c('All', 'IMNTRP', 'JOHTRP', 'LOLTRP', 'SECTRP', 'SFCTRP'),
+                      EventSite = c('All', 'JOHTRP', 'SECTRP', 'LSFTRP', 'JOHNSC',
+                                    'MCCA", "IMNTRP', 'NPTH", "SFCTRP', 'NEWSOC',
+                                    'CLWRSF', 'LOLOC', 'LOLTRP'),
                       EventType = c('All', 'Recapture', 'Mark', 'Recovery', 'Tally', 'Passive Recapture'),
+                      CaptureMethod = c('All', 'SCREWT', 'FYKNET', 'BSEINE', 'DIPNET', 'SHOCK'),
                       SRRcode = NULL,
                       MigrationYear = NULL,
                       BroodYear = NULL,
@@ -26,6 +41,7 @@ getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
   MRRProject <- match.arg(MRRProject)
   EventSite <- match.arg(EventSite)
   EventType <- match.arg(EventType)
+  CaptureMethod <- match.arg(CaptureMethod)
 
   # errors
   if(!is.null(MigrationYear)) {
@@ -44,7 +60,7 @@ getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
   if(MRRProject == 'All') { MRRProject <- NULL }
   if(EventSite == 'All') { EventSite <- NULL }
   if(EventType == 'All') { EventType <- NULL }
-
+  if(CaptureMethod == 'All') { CaptureMethod <- NULL }
 
   # build URL for API
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getp4data')
@@ -52,6 +68,7 @@ getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
   queryList <- list(MRRProject = MRRProject,
                     EventSite = EventSite,
                     EventType = EventType,
+                    CaptureMethod = CaptureMethod,
                     SRRcode = SRRcode,
                     MigrationYear = MigrationYear,
                     BroodYear = BroodYear,
