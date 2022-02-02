@@ -6,8 +6,10 @@
 \usage{
 getP4data(
   MRRProject = c("All", "CDR", "JLV", "IMN", "NPC", "SCS"),
-  EventSite = c("All", "IMNTRP", "JOHTRP", "LOLTRP", "SECTRP", "SFCTRP"),
+  EventSite = c("All", "JOHTRP", "SECTRP", "LSFTRP", "JOHNSC", "MCCA\\", \\"IMNTRP",
+    "NPTH\\", \\"SFCTRP", "NEWSOC", "CLWRSF", "LOLOC", "LOLTRP"),
   EventType = c("All", "Recapture", "Mark", "Recovery", "Tally", "Passive Recapture"),
+  CaptureMethod = c("All", "SCREWT", "FYKNET", "BSEINE", "DIPNET", "SHOCK"),
   SRRcode = NULL,
   MigrationYear = NULL,
   BroodYear = NULL,
@@ -16,11 +18,23 @@ getP4data(
 )
 }
 \arguments{
-\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
+\item{MRRProject}{PTAGIS Coordinator Code. NULL returns all.}
 
-\item{migration_year}{Desired migration year (YYYY)}
+\item{EventSite}{Desired event site. NULL returns all sites.}
 
-\item{event_site}{Desired event site. Leave NULL to retrieve all sites.}
+\item{EventType}{Desired event type. NULL returns all event types.}
+
+\item{CaptureMethod}{Desired capture method. NULL returns all methods.}
+
+\item{SRRcode}{Desired species/run/rear code. NULL returns all species.}
+
+\item{MigrationYear}{Desired migration year (YYYY) NULL returns all years}
+
+\item{BroodYear}{Desired brood Year (YYYY). NULL returns all years}
+
+\item{CalendarYear}{Desired calendar year (YYYY) NULL returns all years.
+
+#' @param cdms_host the web URL for the targeted CDMS user-interface page.}
 }
 \description{
 Retrieve p4 data (from CDMS) for all sites or a single site.
