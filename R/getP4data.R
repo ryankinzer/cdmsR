@@ -2,11 +2,23 @@
 #'
 #' @description Retrieve p4 data (from CDMS) for all sites or a single site.
 #'
-#' @param migration_year Desired migration year (YYYY)
+#' @param MRRProject PTAGIS Coordinator Code. NULL returns all.
 #'
-#' @param event_site Desired event site. Leave NULL to retrieve all sites.
+#' @param EventSite Desired event site. NULL returns all sites.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param EventType Desired event type. NULL returns all event types.
+#'
+#' @param CaptureMethod Desired capture method. NULL returns all methods.
+#'
+#' @param SRRcode Desired species/run/rear code. NULL returns all species.
+#'
+#' @param MigrationYear Desired migration year (YYYY) NULL returns all years
+#'
+#' @param BroodYear  Desired brood Year (YYYY). NULL returns all years
+#'
+#' @param CalendarYear Desired calendar year (YYYY) NULL returns all years.
+#'
+#'#' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Tyler Stright
 #'
