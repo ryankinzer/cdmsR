@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_JuvAbundance
 #'
 #' @description get data from
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return NULL
 
-getJuvAbundanceData <- function(RST = c('All', 'Imnaha River', 'Johnson Creek', 'Lolo Creek', 'Newsome Creek', 'Secesh River', 'South Fork Clearwater River'),
+get_JuvAbundance <- function(RST = c('All', 'Imnaha River', 'Johnson Creek', 'Lolo Creek', 'Newsome Creek', 'Secesh River', 'South Fork Clearwater River'),
                                 SpeciesRun = NULL, MigratoryYear = NULL, BroodYear = NULL, Origin = c('All', 'Hatchery', 'Natural'),
                                 cdms_host = 'https://npt-cdms.nezperce.org'){
 

@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_ReddData_NEOR:
 #'
 #' @description get data from
 #'
@@ -14,19 +14,19 @@
 #'
 #' @return NULL
 
-getSGScarcassDataNEOR <- function(SurveyYear = NULL,
-                                  GRSME_ONLY = TRUE,
-                                  cdms_host = 'https://npt-cdms.nezperce.org'){
+get_ReddData_NEOR <- function(SurveyYear = NULL,
+                               GRSME_ONLY = TRUE,
+                               cdms_host = 'https://npt-cdms.nezperce.org'){
 
-  if(GRSME_ONLY == TRUE) {cat('getSGScarcassDataNEOR: Returning only GRSME data.') }
-  else {cat('getSGScarcassDataNEOR: Returning all North East Oregon data (GRSME and ODFW).')}
+  if(GRSME_ONLY == TRUE) {cat('getSGSreddDataNEOR: Returning only GRSME data.') }
+  else {cat('getSGSreddDataNEOR: Returning all North East Oregon data (GRSME and ODFW).')}
 
   if(!is.null(SurveyYear)) {
     if(!grepl('\\d{4}', SurveyYear))stop("SurveyYear must be a 4-digit year (YYYY).")
   }
 
   # detail url
-  req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgscarcassdataneor')
+  req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgsredddataneor')
 
   # ActivityID
   queryList <- list(SurveyYear = SurveyYear)

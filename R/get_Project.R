@@ -1,4 +1,4 @@
-#' @title getProject:
+#' @title get_Project:
 #'
 #' @description get all information associated with a given project
 #'
@@ -12,7 +12,7 @@
 #'
 #' @return NULL
 #'
-getProject <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
+get_Project <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_FallRR:
 #'
 #' @description get data from
 #'
@@ -14,7 +14,7 @@
 #'
 #' @return NULL
 
-getFCRRdata <- function(BroodYear = NULL, ReturnYear = NULL,
+get_FallRR <- function(BroodYear = NULL, ReturnYear = NULL,
                         cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # detail url

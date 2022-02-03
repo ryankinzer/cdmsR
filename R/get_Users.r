@@ -1,4 +1,4 @@
-#' @title getUsers:
+#' @title get_Users:
 #'
 #' @description gets information for users with CDMS login credentials.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return NULL
 #'
-getUsers <- function(cdms_host = 'https://npt-cdms.nezperce.org/'
+get_Users <- function(cdms_host = 'https://npt-cdms.nezperce.org/'
                        ){
 
   # must login into CDMS to obtain cookie

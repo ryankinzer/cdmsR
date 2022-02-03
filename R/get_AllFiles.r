@@ -1,4 +1,4 @@
-#' @title getAllFiles:
+#' @title get_AllFiles:
 #'
 #' @description gets all files stored in CDMS.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return NULL
 #'
-getAllFiles <- function(cdms_host = 'https://npt-cdms.nezperce.org/'){
+get_AllFiles <- function(cdms_host = 'https://npt-cdms.nezperce.org/'){
 
   projects <- getProjects(cdms_host=cdms_host) %>% pull(Id)
 

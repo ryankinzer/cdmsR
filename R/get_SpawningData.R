@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_SpawningData:
 #'
 #' @description get data from
 #'
@@ -18,7 +18,7 @@
 #'
 #' @return NULL
 
-getFINSspawningData <- function(SpawnLocation = NULL,
+get_SpawningData <- function(SpawnLocation = NULL,
                                 Stock = NULL,
                                 Species = NULL,
                                 Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),

@@ -1,4 +1,4 @@
-#' @title getWaterbodies:
+#' @title get_Waterbodies:
 #'
 #' @description get all waterbodies listed in waterbodies table.
 #'
@@ -11,7 +11,7 @@
 #' @return NULL
 #'
 #'
-getWaterbodies <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+get_Waterbodies <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

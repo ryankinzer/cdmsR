@@ -1,4 +1,4 @@
-#' @title getProjectDatasets:
+#' @title get_ProjectDatasets:
 #'
 #' @description get a list of datasets associated with a project.
 #'
@@ -12,7 +12,7 @@
 #'
 #' @return NULL
 #'
-getProjectDatasets <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
+get_ProjectDatasets <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

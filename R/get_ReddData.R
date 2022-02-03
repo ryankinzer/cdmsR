@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_ReddData
 #'
 #' @description get data from
 #'
@@ -16,10 +16,10 @@
 #'
 #' @return NULL
 
-getSGScarcassData <- function(SurveyYear = NULL,
-                              Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
-                              LocationLabel = NULL,
-                              cdms_host = 'https://npt-cdms.nezperce.org'){
+get_ReddData <- function(SurveyYear = NULL,
+                           Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
+                           LocationLabel = NULL,
+                           cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Project <- match.arg(Project)
 
@@ -29,12 +29,12 @@ getSGScarcassData <- function(SurveyYear = NULL,
 
   # assign DatasetID (essentially project filter)
   if(Project == 'All') {DatasetID <- NULL}
-  if(Project == 'IRSSSM') {DatasetID <- 4323} # 11055
-  if(Project == 'JCAPE') {DatasetID <- 4324} # 11052
-  if(Project == 'NPTH') {DatasetID <- 4325} # 11062
+  if(Project == 'IRSSSM') {DatasetID <- 4334} # 11055
+  if(Project == 'JCAPE') {DatasetID <- 4321} # 11052
+  if(Project == 'NPTH') {DatasetID <- 4322} # 11062
 
   # detail url
-  req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgscarcassdata')
+  req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgsredddata')
 
   # ActivityID
   queryList <- list(SurveyYear = SurveyYear,

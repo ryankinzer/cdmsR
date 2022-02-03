@@ -1,8 +1,8 @@
-#' @title getProjectData:
+#' @title get_DetailRecords:
 #'
-#' @description get all records for a given project dataset.
+#' @description get detail records for a given activity.
 #'
-#' @param datasetID for CDMS dataset.
+#' @param activityID for CDMS dataset.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
@@ -11,32 +11,32 @@
 #' @export
 #'
 #' @return NULL
-#'
-getProjectData <- function(datasetID, cdms_host = 'https://npt-cdms.nezperce.org'){
 
+get_DetailRecords <- function(activityID, cdms_host = 'https://npt-cdms.nezperce.org'){
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
   #cdms_host <- match.arg(cdms_host)
 
   # detail url
-  req_url <- paste0(cdms_host,'/services/api/v1/dataset/getprojectdata')
+  req_url <- paste0(cdms_host,'/services/api/v1/activity/getdatasetactivitydata')
 
   # ActivityID
-  queryList <- list(id = datasetID)
+  queryList <- list(id = activityID)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
-                   query = queryList)
+                          query = queryList)
 
 
   httr::stop_for_status(req,
-                        task = paste0('query all data records for datasetID = ', datasetID, ' from CDMS.'))
+                        task = paste0('query detail records for activityID = ', activityID, ' from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
 
   df <- jsonlite::fromJSON(req_con, flatten = TRUE)
 
-  df <- return(df)
+  return(df[[3]])
+
 }

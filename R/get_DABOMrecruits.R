@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_DABOMrecruits:
 #'
 #' @description get data from
 #'
@@ -18,7 +18,7 @@
 #'
 #' @return NULL
 
-getIPTDSrecruitsData <- function(Variable = c('All', 'Recruits', 'Spawners', 'lambda'),
+get_DABOMrecruits <- function(Variable = c('All', 'Recruits', 'Spawners', 'lambda'),
                                  BroodYear = NULL,
                                  Species = c('All', 'Chinook salmon', 'Steelhead'),
                                  Run = c('All', 'Spring/Summer', 'Summer'),

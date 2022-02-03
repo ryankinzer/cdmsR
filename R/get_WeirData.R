@@ -1,4 +1,4 @@
-#' @title get
+#' @title get_WeirData
 #'
 #' @description get data from
 #'
@@ -18,7 +18,7 @@
 #'
 #' @return NULL
 
-getFINSweirData <- function(Facility = NULL,
+get_WeirData <- function(Facility = NULL,
                             Species = NULL,
                             Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
                             Sex = c('All', 'Female', 'Male', 'Unknown'),

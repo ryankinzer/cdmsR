@@ -1,4 +1,4 @@
-#' @title getDatasetView:
+#' @title get_DatasetView:
 #'
 #' @description get the big bucket for a given dataset, filtered by project,
 #'  waterbody and/or location.
@@ -27,7 +27,7 @@
 #'
 #' @return NULL
 
-getDatasetView <- function(datastoreID, projectID = NULL,
+get_DatasetView <- function(datastoreID, projectID = NULL,
                            cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # detail url

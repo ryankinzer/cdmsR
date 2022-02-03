@@ -1,4 +1,4 @@
-#' @title getProjectFiles:
+#' @title get_ProjectFiles:
 #'
 #' @description gets all files associated with a project.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return NULL
 #'
-getProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.org/'){
+get_ProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.org/'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

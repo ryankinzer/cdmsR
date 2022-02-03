@@ -1,4 +1,4 @@
-#' @title getFINSvalues
+#' @title get_FINSvalues
 #'
 #' @description helper function to provide acceptable values for FINS data queries:
 #' getFINSweirData() and getFINSspawningData().
@@ -15,7 +15,7 @@
 #'
 #' @return NULL
 
-getFINSvalues <- function(module = c('Trapping', 'Spawning'),
+get_FINSvalues <- function(module = c('Trapping', 'Spawning'),
                           field = c('Facility', 'Spawning Location', 'Species', 'Origin', 'Stock'),
                           cdms_host = 'https://npt-cdms.nezperce.org'){
 

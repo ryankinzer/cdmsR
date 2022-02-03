@@ -1,4 +1,4 @@
-#' @title getWaterTemps()
+#' @title get_WaterTempData()
 #'
 #' @description Retrieve CDMS water temperature data between two dates.
 #'
@@ -16,7 +16,7 @@
 #'
 #' @return NULL
 
-getWaterTemps <- function(date_begin, date_end,  locationID = NULL,
+get_WaterTempData <- function(date_begin, date_end,  locationID = NULL,
                           cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # Throw errors

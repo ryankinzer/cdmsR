@@ -1,4 +1,4 @@
-#' @title getDatastores:
+#' @title get_Datastores:
 #'
 #' @description gets all the available datasets from the datastore table.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return NULL
 #'
-getDatastores <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+get_Datastores <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

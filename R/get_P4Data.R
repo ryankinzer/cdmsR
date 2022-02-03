@@ -1,4 +1,4 @@
-#' @title getP4data()
+#' @title get_P4Data
 #'
 #' @description Retrieve p4 data (from CDMS) for all sites or a single site.
 #'
@@ -26,7 +26,7 @@
 #'
 #' @return NULL
 
-getP4data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
+get_P4Data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
                       EventSite = c('All', 'JOHTRP', 'SECTRP', 'LSFTRP', 'JOHNSC',
                                     'MCCA", "IMNTRP', 'NPTH", "SFCTRP', 'NEWSOC',
                                     'CLWRSF', 'LOLOC', 'LOLTRP'),
