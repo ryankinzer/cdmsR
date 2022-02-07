@@ -1,6 +1,6 @@
-#' @title get_STADEMests
+#' @title get_STADEMests:
 #'
-#' @description get data from
+#' @description Retrieve STADEM (STate space Adult Dam Escapement Model) estimates from CDMS.
 #'
 #' @param SpawnYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
 #'
@@ -17,9 +17,9 @@
 #' @return NULL
 
 get_STADEMests <- function(SpawnYear = NULL,
-                            Species = c('All', 'Chinook salmon', 'Steelhead'),
-                            Run = c('All', 'Spring/Summer', 'Summer'),
-                            cdms_host = 'https://npt-cdms.nezperce.org'){
+                           Species = c('All', 'Chinook salmon', 'Steelhead'),
+                           Run = c('All', 'Spring/Summer', 'Summer'),
+                           cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Species <- match.arg(Species)
   Run <- match.arg(Run)

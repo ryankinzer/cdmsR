@@ -1,6 +1,6 @@
-#' @title get_WeirData
+#' @title get_WeirData:
 #'
-#' @description get data from
+#' @description Retrieve FINS (Fisheries Inventory System) Trapping Module data from CDMS.
 #'
 #' @param Facility desired FINS facility name. NULL returns all. Discover values: getFINSvalues()
 #'
@@ -19,11 +19,11 @@
 #' @return NULL
 
 get_WeirData <- function(Facility = NULL,
-                            Species = NULL,
-                            Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
-                            Sex = c('All', 'Female', 'Male', 'Unknown'),
-                            Origin = NULL,
-                            cdms_host = 'https://npt-cdms.nezperce.org'){
+                         Species = NULL,
+                         Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
+                         Sex = c('All', 'Female', 'Male', 'Unknown'),
+                         Origin = NULL,
+                         cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Run = match.arg(Run)
   Sex = match.arg(Sex)

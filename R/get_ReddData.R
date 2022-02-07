@@ -1,8 +1,8 @@
-#' @title get_ReddData
+#' @title get_ReddData:
 #'
-#' @description get data from
+#' @description Retrieve spawning ground survey redd data from CDMS (does not include NE Oregon).
 #'
-#' @param SurveYear desired survey year (YYYY).  NULL returns all.
+#' @param SurveyYear desired survey year (YYYY).  NULL returns all.
 #'
 #' @param Project desired project acronym.  NULL returns all.
 #'
@@ -17,9 +17,9 @@
 #' @return NULL
 
 get_ReddData <- function(SurveyYear = NULL,
-                           Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
-                           LocationLabel = NULL,
-                           cdms_host = 'https://npt-cdms.nezperce.org'){
+                         Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
+                         LocationLabel = NULL,
+                         cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Project <- match.arg(Project)
 

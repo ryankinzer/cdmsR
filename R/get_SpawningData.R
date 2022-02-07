@@ -1,14 +1,18 @@
 #' @title get_SpawningData:
 #'
-#' @description get data from
+#' @description Retrieve FINS (Fisheries Inventory System) Spawning Module data from CDMS.
 #'
 #' @param SpawnLocation desired Spawning Location. NULL returns all. Discover values: getFINSvalues()
+#'
+#' @param Stock desired stock of fish. NULL returns all. Discover values: getFINSvalues()
 #'
 #' @param Species desired species. NULL returns all. Discover values: getFINSvalues()
 #'
 #' @param Run desired run of fish. NULL returns all.
 #'
 #' @param Sex desired sex of fish. NULL returns all.
+#'
+#' @param Origin desired fish origin. NULL returns all. Discover values: getFINSvalues()
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
@@ -19,12 +23,12 @@
 #' @return NULL
 
 get_SpawningData <- function(SpawnLocation = NULL,
-                                Stock = NULL,
-                                Species = NULL,
-                                Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
-                                Sex = c('All', 'Female', 'Male', 'Unknown'),
-                                Origin = NULL,
-                                cdms_host = 'https://npt-cdms.nezperce.org'){
+                             Stock = NULL,
+                             Species = NULL,
+                             Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
+                             Sex = c('All', 'Female', 'Male', 'Unknown'),
+                             Origin = NULL,
+                             cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Run = match.arg(Run)
   Sex = match.arg(Sex)

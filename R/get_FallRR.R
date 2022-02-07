@@ -1,6 +1,6 @@
 #' @title get_FallRR:
 #'
-#' @description get data from
+#' @description Retrieve Fall Chinook Run Reconstruction data from CDMS.
 #'
 #' @param BroodYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
 #'
@@ -14,8 +14,9 @@
 #'
 #' @return NULL
 
-get_FallRR <- function(BroodYear = NULL, ReturnYear = NULL,
-                        cdms_host = 'https://npt-cdms.nezperce.org'){
+get_FallRR <- function(BroodYear = NULL,
+                       ReturnYear = NULL,
+                       cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfcrrdata')

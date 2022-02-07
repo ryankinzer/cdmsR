@@ -1,6 +1,6 @@
-#' @title get_CarcassData_NEOH:
+#' @title get_CarcassData_NEOR:
 #'
-#' @description get data from
+#' @description Retrieve North East Oregon spawning ground survey carcass data from CDMS.
 #'
 #' @param SurveYear desired survey year (YYYY).  NULL returns all.
 #'
@@ -15,8 +15,8 @@
 #' @return NULL
 
 get_CarcassData_NEOR <- function(SurveyYear = NULL,
-                                  GRSME_ONLY = TRUE,
-                                  cdms_host = 'https://npt-cdms.nezperce.org'){
+                                 GRSME_ONLY = TRUE,
+                                 cdms_host = 'https://npt-cdms.nezperce.org'){
 
   if(GRSME_ONLY == TRUE) {cat('getSGScarcassDataNEOR: Returning only GRSME data.') }
   else {cat('getSGScarcassDataNEOR: Returning all North East Oregon data (GRSME and ODFW).')}

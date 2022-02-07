@@ -1,6 +1,6 @@
-#' @title get_P4Data
+#' @title get_P4Data:
 #'
-#' @description Retrieve p4 data (from CDMS) for all sites or a single site.
+#' @description Retrieve p4 data from CDMS (e.g. Rotary Screw Trapping, Beach Seine, Hook and Line).
 #'
 #' @param MRRProject PTAGIS Coordinator Code. NULL returns all.
 #'
@@ -18,7 +18,7 @@
 #'
 #' @param CalendarYear Desired calendar year (YYYY) NULL returns all years.
 #'
-#'#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
 #' @author Tyler Stright
 #'
@@ -27,16 +27,16 @@
 #' @return NULL
 
 get_P4Data <- function(MRRProject = c('All', 'CDR', 'JLV', 'IMN', 'NPC', 'SCS'),
-                      EventSite = c('All', 'JOHTRP', 'SECTRP', 'LSFTRP', 'JOHNSC',
-                                    'MCCA', 'IMNTRP', 'NPTH', 'SFCTRP', 'NEWSOC',
-                                    'CLWRSF', 'LOLOC', 'LOLTRP'),
-                      EventType = c('All', 'Recapture', 'Mark', 'Recovery', 'Tally', 'Passive Recapture'),
-                      CaptureMethod = c('All', 'SCREWT', 'FYKNET', 'BSEINE', 'DIPNET', 'SHOCK'),
-                      SRRcode = NULL,
-                      MigrationYear = NULL,
-                      BroodYear = NULL,
-                      CalendarYear = NULL,
-                      cdms_host = 'https://npt-cdms.nezperce.org'){
+                       EventSite = c('All', 'JOHTRP', 'SECTRP', 'LSFTRP', 'JOHNSC',
+                                     'MCCA', 'IMNTRP', 'NPTH', 'SFCTRP', 'NEWSOC',
+                                     'CLWRSF', 'LOLOC', 'LOLTRP'),
+                       EventType = c('All', 'Recapture', 'Mark', 'Recovery', 'Tally', 'Passive Recapture'),
+                       CaptureMethod = c('All', 'SCREWT', 'FYKNET', 'BSEINE', 'DIPNET', 'SHOCK'),
+                       SRRcode = NULL,
+                       MigrationYear = NULL,
+                       BroodYear = NULL,
+                       CalendarYear = NULL,
+                       cdms_host = 'https://npt-cdms.nezperce.org'){
 
   MRRProject <- match.arg(MRRProject)
   EventSite <- match.arg(EventSite)

@@ -1,6 +1,6 @@
 #' @title get_DABOMests:
 #'
-#' @description get data from
+#' @description Retrieve DABOM (Dam Adult Branch Occupancy Model) escapement estimates from CDMS.
 #'
 #' @param Variable filter to return only a specific variable. NULL returns all variables.
 #'
@@ -21,13 +21,13 @@
 #' @return NULL
 
 get_DABOMests <- function(Variable = c('All', "Female Escapement", "Age Escapement",
-                                         "Female Proportion", "Age Proportion", "Population Escapement",
-                                         "Site Escapement", "Detection Efficiency"),
-                            SpawnYear = NULL,
-                            Species = c('All', 'Chinook salmon', 'Steelhead'),
-                            Run = c('All', 'Spring/Summer', 'Summer'),
-                            TRT_POPID = NULL,
-                            cdms_host = 'https://npt-cdms.nezperce.org'){
+                                       "Female Proportion", "Age Proportion", "Population Escapement",
+                                       "Site Escapement", "Detection Efficiency"),
+                          SpawnYear = NULL,
+                          Species = c('All', 'Chinook salmon', 'Steelhead'),
+                          Run = c('All', 'Spring/Summer', 'Summer'),
+                          TRT_POPID = NULL,
+                          cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Variable <- match.arg(Variable)
   Species <- match.arg(Species)

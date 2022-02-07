@@ -1,12 +1,12 @@
-#' @title get_WaterTempData()
+#' @title get_WaterTempData:
 #'
-#' @description Retrieve CDMS water temperature data between two dates.
+#' @description Retrieve CDMS water temperature data from CDMS between provided dates.
 #'
 #' @param date_begin First date of desired date range.
 #'
 #' @param date_end Final Date of desired date range.
 #'
-#' @param locationID from location table.
+#' @param locationID The CDMS Location ID of the desired location.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
@@ -16,8 +16,10 @@
 #'
 #' @return NULL
 
-get_WaterTempData <- function(date_begin, date_end,  locationID = NULL,
-                          cdms_host = 'https://npt-cdms.nezperce.org'){
+get_WaterTempData <- function(date_begin,
+                              date_end,
+                              locationID = NULL,
+                              cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # Throw errors
   {if(is.null(date_begin) | !grepl('^\\d{4}-\\d{2}-\\d{2}$', date_begin))stop("date_begin must be provided as YYYY-MM-DD")}
