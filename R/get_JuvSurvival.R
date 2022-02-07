@@ -1,6 +1,16 @@
 #' @title get_JuvSurvival:
 #'
-#' @description get data from
+#' @description Retrieve juvenile survival estimates to Lower Granite Dam from CDMS.
+#'
+#' @param RST desired Rotary Screw Trap. Defaults to all traps.
+#'
+#' @param SpeciesRun filter for specfic species and run of fish. NULL returns all species and runs.
+#'
+#' @param MigratoryYear four digit year filter (YYYY) on Migratory Year. NULL returns all years.
+#'
+#' @param BroodYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
+#'
+#' @param Origin desired origin of fish. Defaults to all origins.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
@@ -11,8 +21,11 @@
 #' @return NULL
 
 get_JuvSurvival <- function(RST = c('All', 'Imnaha River', 'Johnson Creek', 'Lolo Creek', 'Newsome Creek', 'Secesh River', 'South Fork Clearwater River'),
-                               SpeciesRun = NULL, MigratoryYear = NULL, BroodYear = NULL, Origin = c('All', 'Hatchery', 'Natural'),
-                               cdms_host = 'https://npt-cdms.nezperce.org'){
+                            SpeciesRun = NULL,
+                            MigratoryYear = NULL,
+                            BroodYear = NULL,
+                            Origin = c('All', 'Hatchery', 'Natural'),
+                            cdms_host = 'https://npt-cdms.nezperce.org'){
 
   RST <- match.arg(RST)
   Origin <- match.arg(Origin)

@@ -1,6 +1,6 @@
 #' @title get_DABOMrecruits:
 #'
-#' @description get data from
+#' @description Retrieve DABOM (Dam Adult Branch Occupancy Model) recruits estimates from CDMS.
 #'
 #' @param Variable filter to return only a specific variable. NULL returns all variables.
 #'
@@ -19,10 +19,10 @@
 #' @return NULL
 
 get_DABOMrecruits <- function(Variable = c('All', 'Recruits', 'Spawners', 'lambda'),
-                                 BroodYear = NULL,
-                                 Species = c('All', 'Chinook salmon', 'Steelhead'),
-                                 Run = c('All', 'Spring/Summer', 'Summer'),
-                                 cdms_host = 'https://npt-cdms.nezperce.org'){
+                              BroodYear = NULL,
+                              Species = c('All', 'Chinook salmon', 'Steelhead'),
+                              Run = c('All', 'Spring/Summer', 'Summer'),
+                              cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Variable <- match.arg(Variable)
   Species <- match.arg(Species)

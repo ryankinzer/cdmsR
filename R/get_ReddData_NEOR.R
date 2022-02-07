@@ -1,8 +1,8 @@
 #' @title get_ReddData_NEOR:
 #'
-#' @description get data from
+#' @description Retrieve North East Oregon spawning ground survey redd data from CDMS.
 #'
-#' @param SurveYear desired survey year (YYYY).  NULL returns all.
+#' @param SurveyYear desired survey year (YYYY).  NULL returns all.
 #'
 #' @param GRSME_ONLY TRUE: Return only GRSME data. FALSE: Return all ODFW data.
 #'
@@ -15,8 +15,8 @@
 #' @return NULL
 
 get_ReddData_NEOR <- function(SurveyYear = NULL,
-                               GRSME_ONLY = TRUE,
-                               cdms_host = 'https://npt-cdms.nezperce.org'){
+                              GRSME_ONLY = TRUE,
+                              cdms_host = 'https://npt-cdms.nezperce.org'){
 
   if(GRSME_ONLY == TRUE) {cat('getSGSreddDataNEOR: Returning only GRSME data.') }
   else {cat('getSGSreddDataNEOR: Returning all North East Oregon data (GRSME and ODFW).')}

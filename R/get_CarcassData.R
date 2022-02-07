@@ -1,6 +1,6 @@
 #' @title get_CarcassData:
 #'
-#' @description get data from
+#' @description Retrieve spawning ground survey carcass data from CDMS (does not include NE Oregon).
 #'
 #' @param SurveYear desired survey year (YYYY).  NULL returns all.
 #'
@@ -17,9 +17,9 @@
 #' @return NULL
 
 get_CarcassData <- function(SurveyYear = NULL,
-                              Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
-                              LocationLabel = NULL,
-                              cdms_host = 'https://npt-cdms.nezperce.org'){
+                            Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
+                            LocationLabel = NULL,
+                            cdms_host = 'https://npt-cdms.nezperce.org'){
 
   Project <- match.arg(Project)
 
