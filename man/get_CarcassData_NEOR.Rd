@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CarcassData_NEOR.R
 \name{get_CarcassData_NEOR}
 \alias{get_CarcassData_NEOR}
-\title{get_CarcassData_NEOH:}
+\title{get_CarcassData_NEOR:}
 \usage{
 get_CarcassData_NEOR(
   SurveyYear = NULL,
@@ -18,7 +18,7 @@ get_CarcassData_NEOR(
 \item{SurveYear}{desired survey year (YYYY).  NULL returns all.}
 }
 \description{
-get data from
+Retrieve North East Oregon spawning ground survey carcass data from CDMS.
 }
 \author{
 Tyler Stright

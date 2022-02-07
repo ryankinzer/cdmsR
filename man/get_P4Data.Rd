@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_P4Data.R
 \name{get_P4Data}
 \alias{get_P4Data}
-\title{get_P4Data}
+\title{get_P4Data:}
 \usage{
 get_P4Data(
   MRRProject = c("All", "CDR", "JLV", "IMN", "NPC", "SCS"),
@@ -32,12 +32,12 @@ get_P4Data(
 
 \item{BroodYear}{Desired brood Year (YYYY). NULL returns all years}
 
-\item{CalendarYear}{Desired calendar year (YYYY) NULL returns all years.
+\item{CalendarYear}{Desired calendar year (YYYY) NULL returns all years.}
 
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.}
+\item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-Retrieve p4 data (from CDMS) for all sites or a single site.
+Retrieve p4 data from CDMS (e.g. Rotary Screw Trapping, Beach Seine, Hook and Line).
 }
 \author{
 Tyler Stright

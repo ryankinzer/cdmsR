@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_JuvAbundance.R
 \name{get_JuvAbundance}
 \alias{get_JuvAbundance}
-\title{get_JuvAbundance}
+\title{get_JuvAbundance:}
 \usage{
 get_JuvAbundance(
   RST = c("All", "Imnaha River", "Johnson Creek", "Lolo Creek", "Newsome Creek",
@@ -15,10 +15,20 @@ get_JuvAbundance(
 )
 }
 \arguments{
+\item{RST}{desired Rotary Screw Trap. Defaults to all traps.}
+
+\item{SpeciesRun}{filter for specfic species and run of fish. NULL returns all species and runs.}
+
+\item{MigratoryYear}{four digit year filter (YYYY) on Migratory Year. NULL returns all years.}
+
+\item{BroodYear}{four digit year filter (YYYY) on Brood Year. NULL returns all years.}
+
+\item{Origin}{desired origin of fish. Defaults to all origins.}
+
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve juvenile abundance estimates from CDMS.
 }
 \author{
 Tyler Stright

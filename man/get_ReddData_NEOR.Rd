@@ -11,14 +11,14 @@ get_ReddData_NEOR(
 )
 }
 \arguments{
+\item{SurveyYear}{desired survey year (YYYY).  NULL returns all.}
+
 \item{GRSME_ONLY}{TRUE: Return only GRSME data. FALSE: Return all ODFW data.}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{SurveYear}{desired survey year (YYYY).  NULL returns all.}
 }
 \description{
-get data from
+Retrieve North East Oregon spawning ground survey redd data from CDMS.
 }
 \author{
 Tyler Stright

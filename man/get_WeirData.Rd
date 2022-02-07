@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_WeirData.R
 \name{get_WeirData}
 \alias{get_WeirData}
-\title{get_WeirData}
+\title{get_WeirData:}
 \usage{
 get_WeirData(
   Facility = NULL,
@@ -25,7 +25,7 @@ get_WeirData(
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve FINS (Fisheries Inventory System) Trapping Module data from CDMS.
 }
 \author{
 Tyler Stright

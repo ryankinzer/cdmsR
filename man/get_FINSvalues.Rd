@@ -2,18 +2,18 @@
 % Please edit documentation in R/get_FINSvalues.R
 \name{get_FINSvalues}
 \alias{get_FINSvalues}
-\title{get_FINSvalues}
+\title{get_FINSvalues:}
 \usage{
 get_FINSvalues(
-  module = c("Trapping", "Spawning"),
-  field = c("Facility", "Spawning Location", "Species", "Origin", "Stock"),
+  Module = c("Trapping", "Spawning"),
+  Field = c("Facility", "Spawning Location", "Species", "Origin", "Stock"),
   cdms_host = "https://npt-cdms.nezperce.org"
 )
 }
 \arguments{
-\item{module}{desired FINS module: Trapping or Spawning.}
+\item{Module}{desired FINS module: Trapping or Spawning.}
 
-\item{field}{desired field chosen to display possible values.}
+\item{Field}{desired field chosen to display possible values.}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }

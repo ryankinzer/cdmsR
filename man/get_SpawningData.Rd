@@ -17,16 +17,20 @@ get_SpawningData(
 \arguments{
 \item{SpawnLocation}{desired Spawning Location. NULL returns all. Discover values: getFINSvalues()}
 
+\item{Stock}{desired stock of fish. NULL returns all. Discover values: getFINSvalues()}
+
 \item{Species}{desired species. NULL returns all. Discover values: getFINSvalues()}
 
 \item{Run}{desired run of fish. NULL returns all.}
 
 \item{Sex}{desired sex of fish. NULL returns all.}
 
+\item{Origin}{desired fish origin. NULL returns all. Discover values: getFINSvalues()}
+
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve FINS (Fisheries Inventory System) Spawning Module data from CDMS.
 }
 \author{
 Tyler Stright

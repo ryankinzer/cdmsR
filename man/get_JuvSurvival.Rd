@@ -15,10 +15,20 @@ get_JuvSurvival(
 )
 }
 \arguments{
+\item{RST}{desired Rotary Screw Trap. Defaults to all traps.}
+
+\item{SpeciesRun}{filter for specfic species and run of fish. NULL returns all species and runs.}
+
+\item{MigratoryYear}{four digit year filter (YYYY) on Migratory Year. NULL returns all years.}
+
+\item{BroodYear}{four digit year filter (YYYY) on Brood Year. NULL returns all years.}
+
+\item{Origin}{desired origin of fish. Defaults to all origins.}
+
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve juvenile survival estimates to Lower Granite Dam from CDMS.
 }
 \author{
 Tyler Stright

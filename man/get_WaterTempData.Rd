@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_WaterTempData.R
 \name{get_WaterTempData}
 \alias{get_WaterTempData}
-\title{get_WaterTempData()}
+\title{get_WaterTempData:}
 \usage{
 get_WaterTempData(
   date_begin,
@@ -16,12 +16,12 @@ get_WaterTempData(
 
 \item{date_end}{Final Date of desired date range.}
 
-\item{locationID}{from location table.}
+\item{locationID}{The CDMS Location ID of the desired location.}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-Retrieve CDMS water temperature data between two dates.
+Retrieve CDMS water temperature data from CDMS between provided dates.
 }
 \author{
 Tyler Stright

@@ -24,7 +24,7 @@ get_DABOMrecruits(
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve DABOM (Dam Adult Branch Occupancy Model) recruits estimates from CDMS.
 }
 \author{
 Tyler Stright

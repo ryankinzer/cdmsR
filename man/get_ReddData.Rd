@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ReddData.R
 \name{get_ReddData}
 \alias{get_ReddData}
-\title{get_ReddData}
+\title{get_ReddData:}
 \usage{
 get_ReddData(
   SurveyYear = NULL,
@@ -12,16 +12,16 @@ get_ReddData(
 )
 }
 \arguments{
+\item{SurveyYear}{desired survey year (YYYY).  NULL returns all.}
+
 \item{Project}{desired project acronym.  NULL returns all.}
 
 \item{LocationLabel}{desired Location label. NULL returns all.}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{SurveYear}{desired survey year (YYYY).  NULL returns all.}
 }
 \description{
-get data from
+Retrieve spawning ground survey redd data from CDMS (does not include NE Oregon).
 }
 \author{
 Tyler Stright

@@ -18,7 +18,7 @@ get_FallRR(
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve Fall Chinook Run Reconstruction data from CDMS.
 }
 \author{
 Tyler Stright

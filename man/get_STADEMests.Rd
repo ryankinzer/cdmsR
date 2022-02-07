@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_STADEMests.R
 \name{get_STADEMests}
 \alias{get_STADEMests}
-\title{get_STADEMests}
+\title{get_STADEMests:}
 \usage{
 get_STADEMests(
   SpawnYear = NULL,
@@ -21,7 +21,7 @@ get_STADEMests(
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get data from
+Retrieve STADEM (STate space Adult Dam Escapement Model) estimates from CDMS.
 }
 \author{
 Tyler Stright

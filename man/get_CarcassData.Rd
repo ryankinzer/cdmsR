@@ -21,7 +21,7 @@ get_CarcassData(
 \item{SurveYear}{desired survey year (YYYY).  NULL returns all.}
 }
 \description{
-get data from
+Retrieve spawning ground survey carcass data from CDMS (does not include NE Oregon).
 }
 \author{
 Tyler Stright
