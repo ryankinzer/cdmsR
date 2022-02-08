@@ -6,7 +6,7 @@
 \usage{
 get_ReddData(
   SurveyYear = NULL,
-  Project = c("All", "IRSSM", "JCAPE", "NPTH"),
+  Project = c("All", "IRSSSM", "JCAPE", "NPTH"),
   LocationLabel = NULL,
   cdms_host = "https://npt-cdms.nezperce.org"
 )
