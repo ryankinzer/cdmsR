@@ -17,7 +17,7 @@ get_AllFiles <- function(cdms_host = 'https://npt-cdms.nezperce.org/'){
   all_files <- map_dfr(.x = projects,
                        .f = function(.x){
 
-                         tmp <- getProjectFiles(ProjectId = .x, cdms_host = cdms_host)
+                         tmp <- get_ProjectFiles(ProjectId = .x, cdms_host = cdms_host)
 
                          if(class(tmp) == "data.frame") {
 
