@@ -12,7 +12,7 @@
 #'
 get_AllFiles <- function(cdms_host = 'https://npt-cdms.nezperce.org/'){
 
-  projects <- getProjects(cdms_host=cdms_host) %>% pull(Id)
+  projects <- get_Projects(cdms_host=cdms_host) %>% pull(Id)
 
   all_files <- map_dfr(.x = projects,
                        .f = function(.x){
