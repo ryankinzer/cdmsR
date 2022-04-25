@@ -1,41 +1,28 @@
 #' @title get_DatasetView:
 #'
-#' @description get the big bucket for a given dataset, filtered by project,
-#'  waterbody and/or location.
+#' @description get all data for a given datastore, filtered by project if desired..
 #'
-#' @param datastoreID for CDMS dataset.
+#' @param datastore_id CDMS Datastore ID. see cdmsR::get_Datastores()
 #'
-#' @param species for Species of interest
+#' @param project_id CDMS Project ID. NULL returns all. see cdmsR::get_Projects()
 #'
-#' @param run for run associated with species
-#'
-#' @param pop_name for Population of interest
-#'
-#' @param survey_year year of interest.
-#'
-#' @param projectID for project of interest in CDMS project table.
-#'
-#' @param waterbodyID for stream in CDMS waterbodies table.
-#'
-#' @param locationID from location table.
-#'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Ryan Kinzer
+#' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 
-get_DatasetView <- function(datastoreID, projectID = NULL,
-                           cdms_host = 'https://npt-cdms.nezperce.org'){
+get_DatasetView <- function(datastore_id, project_id = NULL){
+
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfulldatasetview')
 
-  # ActivityID
-  queryList <- list(id = datastoreID,
-                    ProjectId = projectID)
+  # query parameters
+  queryList <- list(id = datastore_id,
+                    ProjectId = project_id)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -45,7 +32,7 @@ get_DatasetView <- function(datastoreID, projectID = NULL,
 
 
   httr::stop_for_status(req,
-                        task = paste0('query all data records for datastoreID = ', datastoreID, ' from CDMS.'))
+                        task = paste0('query all data records for datastore_id = ', datastore_id, ' from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

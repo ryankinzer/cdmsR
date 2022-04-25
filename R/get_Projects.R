@@ -2,16 +2,17 @@
 #'
 #' @description get all the available projects in CDMS.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Ryan Kinzer
+#' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 #'
 #'
-get_Projects <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+get_Projects <- function(){
+
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages

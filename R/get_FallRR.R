@@ -2,28 +2,37 @@
 #'
 #' @description Retrieve Fall Chinook Run Reconstruction data from CDMS.
 #'
-#' @param BroodYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
+#' @param brood_year four digit year filter (YYYY) on Brood Year. NULL returns all years.
 #'
-#' @param ReturnYear four digit year filter (YYYY) on Return Year. NULL returns all years.
+#' @param return_year four digit year filter (YYYY) on Return Year. NULL returns all years.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 
-get_FallRR <- function(BroodYear = NULL,
-                       ReturnYear = NULL,
-                       cdms_host = 'https://npt-cdms.nezperce.org'){
+get_FallRR <- function(brood_year = NULL,
+                       return_year = NULL){
+
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
+
+  # errors
+  if(!is.null(return_year)) {
+    if(!grepl('\\d{4}', return_year))stop("return_year must be a 4-digit year (YYYY).")
+  }
+
+  if(!is.null(brood_year)) {
+    if(!grepl('\\d{4}', brood_year))stop("brood_year must be a 4-digit year (YYYY).")
+  }
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfcrrdata')
 
   # ActivityID
-  queryList <- list(ReturnYear = ReturnYear,
-                    BroodYear = BroodYear)
+  queryList <- list(ReturnYear = return_year,
+                    BroodYear = brood_year)
 
   # httr::modify_url(req_url, query = queryList)
 

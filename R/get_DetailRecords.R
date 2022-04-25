@@ -2,27 +2,26 @@
 #'
 #' @description get detail records for a given activity.
 #'
-#' @param activityID for CDMS dataset.
+#' @param activity_id ID of specific CDMS activity.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Ryan Kinzer
+#' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 
-get_DetailRecords <- function(activityID, cdms_host = 'https://npt-cdms.nezperce.org'){
+get_DetailRecords <- function(activity_id){
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
-  #cdms_host <- match.arg(cdms_host)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/activity/getdatasetactivitydata')
 
-  # ActivityID
-  queryList <- list(id = activityID)
+  # query parameters
+  queryList <- list(id = activity_id)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
@@ -30,7 +29,7 @@ get_DetailRecords <- function(activityID, cdms_host = 'https://npt-cdms.nezperce
 
 
   httr::stop_for_status(req,
-                        task = paste0('query detail records for activityID = ', activityID, ' from CDMS.'))
+                        task = paste0('query detail records for activity_id = ', activity_id, ' from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

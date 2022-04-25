@@ -2,9 +2,7 @@
 #'
 #' @description get all information associated with a given project
 #'
-#' @param projectID for CDMS Project.
-#'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param project_id CDMS Project ID. see cdmsR::get_Projects()
 #'
 #' @author Ryan Kinzer, Tyler Stright
 #'
@@ -12,18 +10,19 @@
 #'
 #' @return NULL
 #'
-get_Project <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
+get_Project <- function(project_id){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
-  #cdms_host <- match.arg(cdms_host)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/project/getproject')
 
-  # ProjectID
-  queryList <- list(id = projectID)
+  # project_id
+  queryList <- list(id = project_id)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
@@ -31,7 +30,7 @@ get_Project <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
 
 
   httr::stop_for_status(req,
-                        task = paste0('query all data records for projectID = ', projectID, ' from CDMS.'))
+                        task = paste0('query all project information for project_id = ', project_id, ' from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

@@ -1,31 +1,31 @@
 #' @title get_ProjectLocations:
 #'
-#' @description get Location information from CDMS for a specific project..
+#' @description get Location information from CDMS for a specific project.
 #'
-#' @param ProjectID CDMS Project ID. see cdmsR::get_Projects()
+#' @param project_id CDMS Project ID. see cdmsR::get_Projects()
 #'
-#' @param DatastoreID CDMS Datastore ID. see cdmsR::get_Datastores().  NULL returns all.
+#' @param datastore_id CDMS Datastore ID. NULL returns all. see cdmsR::get_Datastores().
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 #'
 #'
-get_ProjectLocations <- function(ProjectID,
-                                 DatastoreID = NULL,
-                                 cdms_host = 'https://npt-cdms.nezperce.org'){
+get_ProjectLocations <- function(project_id,
+                                 datastore_id = NULL){
 
-  if(is.null(ProjectID))stop('ProjectID must be provided.')
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
+
+  if(is.null(project_id))stop('project_id must be provided.')
 
   # url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getprojectlocations')
 
-  queryList <- list(ProjectID = ProjectID,
-                    DatastoreID = DatastoreID)
+  queryList <- list(ProjectID = project_id,
+                    DatastoreID = datastore_id)
 
   # GET request with query parameters
   req <- httr::GET(req_url,

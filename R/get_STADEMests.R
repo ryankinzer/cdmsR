@@ -2,42 +2,42 @@
 #'
 #' @description Retrieve STADEM (STate space Adult Dam Escapement Model) estimates from CDMS.
 #'
-#' @param SpawnYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
+#' @param spawn_year four digit year filter (YYYY) on Spawn Year. NULL returns all.
 #'
-#' @param Species filter to return data from a single species. NULL returns all species.
+#' @param species filter to return data from a single species. NULL returns all.
 #'
-#' @param Run filter to return data from a single run of fish. NULL returns all runs.
+#' @param run filter to return data from a single run of fish. NULL returns all.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 
-get_STADEMests <- function(SpawnYear = NULL,
-                           Species = c('All', 'Chinook salmon', 'Steelhead'),
-                           Run = c('All', 'Spring/Summer', 'Summer'),
-                           cdms_host = 'https://npt-cdms.nezperce.org'){
+get_STADEMests <- function(spawn_year = NULL,
+                           species = c('All', 'Chinook salmon', 'Steelhead'),
+                           run = c('All', 'Spring/Summer', 'Summer')){
 
-  Species <- match.arg(Species)
-  Run <- match.arg(Run)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
-  if(!is.null(SpawnYear)) {
-    if(!grepl('\\d{4}', SpawnYear))stop("BroodYear must be a 4-digit year (YYYY).")
+  species <- match.arg(species)
+  run <- match.arg(run)
+
+  if(!is.null(spawn_year)) {
+    if(!grepl('\\d{4}', spawn_year))stop("spawn_year must be a 4-digit year (YYYY).")
   }
 
-  if(Species == 'All') { Species <- NULL}
-  if(Run == 'All') { Run <- NULL}
+  if(species == 'All') { species <- NULL}
+  if(run == 'All') { run <- NULL}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getiptdslgrdata')
 
   # ActivityID
-  queryList <- list(SpawnYear = SpawnYear,
-                    Species = Species,
-                    Run = Run)
+  queryList <- list(SpawnYear = spawn_year,
+                    Species = species,
+                    Run = run)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -47,7 +47,7 @@ get_STADEMests <- function(SpawnYear = NULL,
 
 
   httr::stop_for_status(req,
-                        task = paste0('query IPTDS Lower Granite Dam data from CDMS.'))
+                        task = paste0('query STADEM estimates from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

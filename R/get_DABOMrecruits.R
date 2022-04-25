@@ -2,48 +2,48 @@
 #'
 #' @description Retrieve DABOM (Dam Adult Branch Occupancy Model) recruits estimates from CDMS.
 #'
-#' @param Variable filter to return only a specific variable. NULL returns all variables.
+#' @param variable filter to return only a specific variable. NULL returns all.
 #'
-#' @param BroodYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
+#' @param brood_year four digit year filter (YYYY) on Brood Year. NULL returns all.
 #'
-#' @param Species filter to return data from a single species. NULL returns all species.
+#' @param species filter to return data from a single species. NULL returns all.
 #'
-#' @param Run filter to return data from a single run of fish. NULL returns all runs.
+#' @param run filter to return data from a single run of fish. NULL returns all.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 
-get_DABOMrecruits <- function(Variable = c('All', 'Recruits', 'Spawners', 'lambda'),
-                              BroodYear = NULL,
-                              Species = c('All', 'Chinook salmon', 'Steelhead'),
-                              Run = c('All', 'Spring/Summer', 'Summer'),
-                              cdms_host = 'https://npt-cdms.nezperce.org'){
+get_DABOMrecruits <- function(variable = c('All', 'Recruits', 'Spawners', 'lambda'),
+                              brood_year = NULL,
+                              species = c('All', 'Chinook salmon', 'Steelhead'),
+                              run = c('All', 'Spring/Summer', 'Summer')){
 
-  Variable <- match.arg(Variable)
-  Species <- match.arg(Species)
-  Run <- match.arg(Run)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
-  if(!is.null(BroodYear)) {
-    if(!grepl('\\d{4}', BroodYear))stop("BroodYear must be a 4-digit year (YYYY).")
+  variable <- match.arg(variable)
+  species <- match.arg(species)
+  run <- match.arg(run)
+
+  if(!is.null(brood_year)) {
+    if(!grepl('\\d{4}', brood_year))stop("brood_year must be a 4-digit year (YYYY).")
   }
 
-  if(Variable == 'All') { Variable <- NULL}
-  if(Species == 'All') { Species <- NULL}
-  if(Run == 'All') { Run <- NULL}
+  if(variable == 'All') { variable <- NULL}
+  if(species == 'All') { species <- NULL}
+  if(run == 'All') { run <- NULL}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getiptdsrecruitsdata')
 
   # ActivityID
-  queryList <- list(Variable = Variable,
-                    BroodYear = BroodYear,
-                    Species = Species,
-                    Run = Run)
+  queryList <- list(Variable = variable,
+                    BroodYear = brood_year,
+                    Species = species,
+                    Run = run)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -53,7 +53,7 @@ get_DABOMrecruits <- function(Variable = c('All', 'Recruits', 'Spawners', 'lambd
 
 
   httr::stop_for_status(req,
-                        task = paste0('query IPTDS Recruits data from CDMS.'))
+                        task = paste0('query DABOM Recruits data from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

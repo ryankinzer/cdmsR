@@ -2,41 +2,40 @@
 #'
 #' @description get a list of datasets associated with a project.
 #'
-#' @param projectID for CDMS projects.
+#' @param project_id CDMS Project ID. see cdmsR::get_Projects()
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Ryan Kinzer
+#' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 #'
-get_ProjectDatasets <- function(projectID, cdms_host = 'https://npt-cdms.nezperce.org'){
+get_ProjectDatasets <- function(project_id){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
-  #cdms_host <- match.arg(cdms_host)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # project url
   req_url <- paste0(cdms_host,'/services/api/v1/project/getprojectdatasets')
 
-  query_list <- list(id = projectID)
+  query_list <- list(id = project_id)
 
   # GET request with query parameters
   req <- httr::GET(req_url,
                    query = query_list)
 
   httr::stop_for_status(req,
-                        task = paste0('query projects from CDMS.'))
+                        task = paste0('query project datasets from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
 
   df <- jsonlite::fromJSON(req_con)
 
-  df <- dplyr::select(df, DatasetID = Id, ProjectID = ProjectId, DatastoreID = DatastoreId, Name, Description, CreateDateTime)
+  df <- dplyr::select(df, DatastoreId, DatasetId = Id, ProjectId, Name, Description, CreateDateTime)
 
   return(df)
 }
