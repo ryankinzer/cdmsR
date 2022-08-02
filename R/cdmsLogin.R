@@ -1,4 +1,4 @@
-#' @title cdmsLogin: Login to CDMS.
+#' @title cdmsLogin
 #'
 #' @description The function passes username and password creditianls to the
 #'   specified Centralized Data Management System (CDMS). After being

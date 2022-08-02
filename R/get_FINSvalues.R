@@ -28,8 +28,8 @@ get_FINSvalues <- function(module = c('Trapping', 'Spawning'),
   {if(module == 'Spawning' & field == 'Facility')stop('"Facility" is only associated with the FINS Trapping module.')}
 
   # set table value.
-  if(module == 'Trapping') { table <- 'AdultWeir_Data_kus'}
-  if(module == 'Spawning') { table <- 'AdultSpawning_Data_kus'}
+  if(module == 'Trapping') { table <- 'AdultWeir_Data_KUS'}
+  if(module == 'Spawning') { table <- 'AdultSpawning_Data_KUS'}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfinsvalues')

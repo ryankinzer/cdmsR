@@ -14,11 +14,6 @@ get_Projects <- function(){
   load(file = file.path(tempdir(), 'chtmp.rda'))
   cdms_host <- rawToChar(.x)
 
-  # must login into CDMS to obtain cookie
-  # requires httr, jsonlite packages
-
-  #cdms_host <- match.arg(cdms_host)
-
   # project url
   req_url <- paste0(cdms_host,'/services/api/v1/project/getprojects')
 

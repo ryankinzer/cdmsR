@@ -58,11 +58,11 @@ get_WaterTempData <- function(date_begin,
 
   # filter for provided start/end dates
   if(nrow(temp_data) != 0 ) {
-  final_df <- temp_data %>%
-    mutate(ReadingDate = lubridate::ymd_hms(ReadingDateTime),
-           ReadingDate = lubridate::as_date(ReadingDate)) %>%
-    filter(between(ReadingDate, date_begin, date_end)) %>%
-    select(-ReadingDate)
+    final_df <- temp_data %>%
+      mutate(ReadingDate = lubridate::ymd_hms(ReadingDateTime),
+             ReadingDate = lubridate::as_date(ReadingDate)) %>%
+      filter(between(ReadingDate, date_begin, date_end)) %>%
+      select(-ReadingDate)
   } else {
     final_df <- temp_data
     cat('get_WaterTempData(): No data returned for provided query.')

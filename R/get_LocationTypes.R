@@ -11,9 +11,6 @@
 #'
 get_LocationTypes <- function(){
 
-  # must login into CDMS to obtain cookie
-  # requires httr, jsonlite packages
-
   load(file = file.path(tempdir(), 'chtmp.rda'))
   cdms_host <- rawToChar(.x)
 
