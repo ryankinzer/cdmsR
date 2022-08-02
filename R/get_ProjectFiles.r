@@ -2,7 +2,7 @@
 #'
 #' @description gets all files associated with a project.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param project_id CDMS Project ID. see cdmsR::get_Projects()
 #'
 #' @author Ryan Kinzer, Tyler Stright
 #'
@@ -10,12 +10,10 @@
 #'
 #' @return NULL
 #'
-get_ProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.org/'){
+get_ProjectFiles <- function(project_id){
 
-  # must login into CDMS to obtain cookie
-  # requires httr, jsonlite packages
-
-  #cdms_host <- match.arg(cdms_host)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # copied from dbo.FileTypes
   filetypes_df <- data.frame(
@@ -25,7 +23,7 @@ get_ProjectFiles <- function(ProjectId, cdms_host = 'https://npt-cdms.nezperce.o
   )
 
   # project url
-  req_url <- paste0(cdms_host,'/services/api/v1/file/getprojectfiles?id=',ProjectId)
+  req_url <- paste0(cdms_host,'/services/api/v1/file/getprojectfiles?id=', project_id)
 
   # GET request with query parameters
   req <- httr::GET(req_url)

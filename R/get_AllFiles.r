@@ -2,22 +2,23 @@
 #'
 #' @description gets all files stored in CDMS.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
 #' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 #'
-get_AllFiles <- function(cdms_host = 'https://npt-cdms.nezperce.org/'){
+get_AllFiles <- function(){
 
-  projects <- get_Projects(cdms_host=cdms_host) %>% pull(Id)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
+
+  projects <- get_Projects() %>% pull(Id)
 
   all_files <- map_dfr(.x = projects,
                        .f = function(.x){
 
-                         tmp <- get_ProjectFiles(ProjectId = .x, cdms_host = cdms_host)
+                         tmp <- get_ProjectFiles(project_id = .x)
 
                          if(class(tmp) == "data.frame") {
 

@@ -2,53 +2,53 @@
 #'
 #' @description Retrieve juvenile abundance estimates from CDMS.
 #'
-#' @param RST desired Rotary Screw Trap. Defaults to all traps.
+#' @param rst desired Rotary Screw Trap. Defaults to all traps.
 #'
-#' @param SpeciesRun filter for specfic species and run of fish. NULL returns all species and runs.
+#' @param species_run filter for specfic species and run of fish. NULL returns all species and runs.
 #'
-#' @param MigratoryYear four digit year filter (YYYY) on Migratory Year. NULL returns all years.
+#' @param migratory_year four digit year filter (YYYY) on Migratory Year. NULL returns all years.
 #'
-#' @param BroodYear four digit year filter (YYYY) on Brood Year. NULL returns all years.
+#' @param brood_year four digit year filter (YYYY) on Brood Year. NULL returns all years.
 #'
-#' @param Origin desired origin of fish. Defaults to all origins.
+#' @param origin desired origin of fish. Defaults to all origins.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 
-get_JuvAbundance <- function(RST = c('All', 'Imnaha River', 'Johnson Creek', 'Lolo Creek', 'Newsome Creek', 'Secesh River', 'South Fork Clearwater River'),
-                             SpeciesRun = NULL,
-                             MigratoryYear = NULL,
-                             BroodYear = NULL,
-                             Origin = c('All', 'Hatchery', 'Natural'),
-                             cdms_host = 'https://npt-cdms.nezperce.org'){
+get_JuvAbundance <- function(rst = c('All', 'Imnaha River', 'Johnson Creek', 'Lolo Creek', 'Newsome Creek', 'Secesh River', 'South Fork Clearwater River'),
+                             species_run = NULL,
+                             migratory_year = NULL,
+                             brood_year = NULL,
+                             origin = c('All', 'Hatchery', 'Natural')){
 
-  RST <- match.arg(RST)
-  Origin <- match.arg(Origin)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
-  if(Origin == 'All') { Origin <- NULL}
+  rst <- match.arg(rst)
+  origin <- match.arg(origin)
+
+  if(origin == 'All') { origin <- NULL}
 
   # generate location label
-  if(RST == 'All') { LocationLabel <- NULL}
-  if(RST == 'Imnaha River') { LocationLabel <- 'Imnaha River: Imnaha River RST'}
-  if(RST == 'Johnson Creek') { LocationLabel <-  'Johnson Creek: Johnson Creek RST'}
-  if(RST == 'Lolo Creek') { LocationLabel <-  'Lolo Creek: Lolo Creek RST'}
-  if(RST == 'Newsome Creek') { LocationLabel <-  'Newsome Creek: Newsome Creek RST'}
-  if(RST == 'Secesh River') { LocationLabel <-  'Secesh River: Lower Secesh River RST'}
-  if(RST == 'South Fork Clearwater River') { LocationLabel <-  'South Fork Clearwater River: SF Clearwater River RST'}
+  if(rst == 'All') { LocationLabel <- NULL}
+  if(rst == 'Imnaha River') { LocationLabel <- 'Imnaha River: Imnaha River RST'}
+  if(rst == 'Johnson Creek') { LocationLabel <-  'Johnson Creek: Johnson Creek RST'}
+  if(rst == 'Lolo Creek') { LocationLabel <-  'Lolo Creek: Lolo Creek RST'}
+  if(rst == 'Newsome Creek') { LocationLabel <-  'Newsome Creek: Newsome Creek RST'}
+  if(rst == 'Secesh River') { LocationLabel <-  'Secesh River: Lower Secesh River RST'}
+  if(rst == 'South Fork Clearwater River') { LocationLabel <-  'South Fork Clearwater River: SF Clearwater River RST'}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getjuvabundancedata')
 
   # ActivityID
-  queryList <- list(SpeciesRun = SpeciesRun,
-                    MigratoryYear = MigratoryYear,
-                    BroodYear = BroodYear,
-                    Origin = Origin,
+  queryList <- list(SpeciesRun = species_run,
+                    MigratoryYear = migratory_year,
+                    BroodYear = brood_year,
+                    Origin = origin,
                     LocationLabel = LocationLabel)
 
   # httr::modify_url(req_url, query = queryList)

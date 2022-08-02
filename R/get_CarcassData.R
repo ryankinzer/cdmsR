@@ -2,44 +2,44 @@
 #'
 #' @description Retrieve spawning ground survey carcass data from CDMS (does not include NE Oregon).
 #'
-#' @param SurveYear desired survey year (YYYY).  NULL returns all.
+#' @param survey_year desired survey year (YYYY). NULL returns all.
 #'
-#' @param Project desired project acronym.  NULL returns all.
+#' @param project desired project acronym. NULL returns all.
 #'
-#' @param LocationLabel desired Location label. NULL returns all.
+#' @param location_label desired Location label. NULL returns all. see cdmsR::get_ProjectLocations()
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 
-get_CarcassData <- function(SurveyYear = NULL,
-                            Project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
-                            LocationLabel = NULL,
-                            cdms_host = 'https://npt-cdms.nezperce.org'){
+get_CarcassData <- function(survey_year = NULL,
+                            project = c('All', 'IRSSM', 'JCAPE', 'NPTH'),
+                            location_label = NULL){
 
-  Project <- match.arg(Project)
+  project <- match.arg(project)
 
-  if(!is.null(SurveyYear)) {
-    if(!grepl('\\d{4}', SurveyYear))stop("SurveyYear must be a 4-digit year (YYYY).")
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
+
+  if(!is.null(survey_year)) {
+    if(!grepl('\\d{4}', survey_year))stop("survey_year must be a 4-digit year (YYYY).")
   }
 
-  # assign DatasetID (essentially project filter)
-  if(Project == 'All') {DatasetID <- NULL}
-  if(Project == 'IRSSSM') {DatasetID <- 4323} # 11055
-  if(Project == 'JCAPE') {DatasetID <- 4324} # 11052
-  if(Project == 'NPTH') {DatasetID <- 4325} # 11062
+  # assign dataset_id (essentially project filter)
+  if(project == 'All') {dataset_id <- NULL}
+  if(project == 'IRSSSM') {dataset_id <- 4323} # 11055
+  if(project == 'JCAPE') {dataset_id <- 4324} # 11052
+  if(project == 'NPTH') {dataset_id <- 4325} # 11062
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getsgscarcassdata')
 
   # ActivityID
-  queryList <- list(SurveyYear = SurveyYear,
-                    DatasetID = DatasetID,
-                    LocationLabel = LocationLabel)
+  queryList <- list(SurveyYear = survey_year,
+                    DatasetID = dataset_id,
+                    LocationLabel = location_label)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -49,7 +49,7 @@ get_CarcassData <- function(SurveyYear = NULL,
 
 
   httr::stop_for_status(req,
-                        task = paste0('query all data records for SOMETHING from CDMS.'))
+                        task = paste0('query carcass data records from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

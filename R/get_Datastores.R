@@ -1,21 +1,20 @@
 #' @title get_Datastores:
 #'
-#' @description gets all the available datasets from the datastore table.
+#' @description gets all available CDMS datastores.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Ryan Kinzer
+#' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 #'
-get_Datastores <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+get_Datastores <- function(){
 
   # must login into CDMS to obtain cookie
   # requires httr, jsonlite packages
 
-  #cdms_host <- match.arg(cdms_host)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # project url
   req_url <- paste0(cdms_host,'/services/api/v1/datastore/getdatastores')

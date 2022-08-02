@@ -2,47 +2,49 @@
 #'
 #' @description Retrieve FINS (Fisheries Inventory System) Trapping Module data from CDMS.
 #'
-#' @param Facility desired FINS facility name. NULL returns all. Discover values: getFINSvalues()
+#' @param facility desired FINS facility name. NULL returns all. see get_FINSvalues()
 #'
-#' @param Species desired species. NULL returns all. Discover values: getFINSvalues()
+#' @param species desired species. NULL returns all. see get_FINSvalues()
 #'
-#' @param Run desired run of fish. NULL returns all.
+#' @param run desired run of fish. NULL returns all.
 #'
-#' @param Sex desired sex of fish. NULL returns all.
+#' @param sex desired sex of fish. NULL returns all.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param origin desired origin of fish. NULL returns all. see get_FINSvalues()
 #'
-#' @author Tyler Stright
+#' @author Tyler Stright, Ryan Kinzer
 #'
 #' @export
 #'
 #' @return NULL
 
-get_WeirData <- function(Facility = NULL,
-                         Species = NULL,
-                         Run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
-                         Sex = c('All', 'Female', 'Male', 'Unknown'),
-                         Origin = NULL,
-                         cdms_host = 'https://npt-cdms.nezperce.org'){
+get_WeirData <- function(facility = NULL,
+                         species = NULL,
+                         run = c('All', NA, 'Spring', 'Summer', 'Fall', 'Winter'),
+                         sex = c('All', 'Female', 'Male', 'Unknown'),
+                         origin = NULL){
 
-  Run = match.arg(Run)
-  Sex = match.arg(Sex)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
-  cat('Use getFINSvalues() to determine field values.')
+  run = match.arg(run)
+  sex = match.arg(sex)
+
+  cat('If needed, use get_FINSvalues() to determine field values.')
 
   # set NULLs
-  if(Run == 'All') { Run <- NULL}
-  if(Sex == 'All') { Sex <- NULL}
+  if(run == 'All') { run <- NULL}
+  if(sex == 'All') { sex <- NULL}
 
   # detail url
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getfinsweirdata')
 
   # ActivityID
-  queryList <- list(Facility = Facility,
-                    Species = Species,
-                    Run = Run,
-                    Sex = Sex,
-                    Origin = Origin)
+  queryList <- list(Facility = facility,
+                    Species = species,
+                    Run = run,
+                    Sex = sex,
+                    Origin = origin)
 
   # httr::modify_url(req_url, query = queryList)
 
@@ -52,7 +54,7 @@ get_WeirData <- function(Facility = NULL,
 
 
   httr::stop_for_status(req,
-                        task = paste0('query all data records for SOMETHING from CDMS.'))
+                        task = paste0('query FINS trapping data from CDMS.'))
 
   # parse the response
   req_con <- httr::content(req, type = 'text', encoding = "UTF-8")

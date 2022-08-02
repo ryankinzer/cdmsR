@@ -2,21 +2,17 @@
 #'
 #' @description get all available location types from LocationType table.
 #'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
-#'
-#' @author Ryan Kinzer
+#' @author Ryan Kinzer, Tyler Stright
 #'
 #' @export
 #'
 #' @return NULL
 #'
 #'
-get_LocationTypes <- function(cdms_host = 'https://npt-cdms.nezperce.org'){
+get_LocationTypes <- function(){
 
-  # must login into CDMS to obtain cookie
-  # requires httr, jsonlite packages
-
-  #cdms_host <- match.arg(cdms_host)
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # project url
   req_url <- paste0(cdms_host,'/services/api/v1/location/getlocationtypes')

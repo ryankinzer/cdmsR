@@ -2,13 +2,11 @@
 #'
 #' @description Retrieve CDMS water temperature data from CDMS between provided dates.
 #'
-#' @param date_begin First date of desired date range.
+#' @param date_begin First date of desired date range formatted as YYYY-MM-DD.
 #'
-#' @param date_end Final Date of desired date range.
+#' @param date_end Final Date of desired date range formatted as YYYY-MM-DD.
 #'
-#' @param locationID The CDMS Location ID of the desired location.
-#'
-#' @param cdms_host the web URL for the targeted CDMS user-interface page.
+#' @param location_id The CDMS Location ID of the desired location. see cdmsR::get_ProjectLocations()
 #'
 #' @author Tyler Stright
 #'
@@ -18,8 +16,10 @@
 
 get_WaterTempData <- function(date_begin,
                               date_end,
-                              locationID = NULL,
-                              cdms_host = 'https://npt-cdms.nezperce.org'){
+                              location_id = NULL){
+
+  load(file = file.path(tempdir(), 'chtmp.rda'))
+  cdms_host <- rawToChar(.x)
 
   # Throw errors
   {if(is.null(date_begin) | !grepl('^\\d{4}-\\d{2}-\\d{2}$', date_begin))stop("date_begin must be provided as YYYY-MM-DD")}
@@ -37,7 +37,7 @@ get_WaterTempData <- function(date_begin,
       # build URL for API
       req_url <- paste0(cdms_host,'/services/api/v1/npt/getwatertempdata')
       queryList <- list(Year = .x,
-                        LocationId = locationID)
+                        LocationId = location_id)
 
       # httr::modify_url(req_url, query = queryList)
 
@@ -47,7 +47,7 @@ get_WaterTempData <- function(date_begin,
 
 
       httr::stop_for_status(req,
-                            task = paste0('query all water temperature records from ', .x, '.'))
+                            task = paste0('query water temperature records from CDMS.'))
 
       # parse the response
       req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
@@ -57,11 +57,16 @@ get_WaterTempData <- function(date_begin,
 
 
   # filter for provided start/end dates
-  final_df <- temp_data %>%
-    mutate(ReadingDate = lubridate::ymd_hms(ReadingDateTime),
-           ReadingDate = lubridate::as_date(ReadingDate)) %>%
-    filter(between(ReadingDate, date_begin, date_end)) %>%
-    select(-ReadingDate)
+  if(nrow(temp_data) != 0 ) {
+    final_df <- temp_data %>%
+      mutate(ReadingDate = lubridate::ymd_hms(ReadingDateTime),
+             ReadingDate = lubridate::as_date(ReadingDate)) %>%
+      filter(between(ReadingDate, date_begin, date_end)) %>%
+      select(-ReadingDate)
+  } else {
+    final_df <- temp_data
+    cat('get_WaterTempData(): No data returned for provided query.')
+  }
 
   return(final_df)
 
