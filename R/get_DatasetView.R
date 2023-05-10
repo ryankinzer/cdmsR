@@ -1,23 +1,10 @@
 #' @title get_DatasetView:
 #'
-#' @description get the big bucket for a given dataset, filtered by project,
-#'  waterbody and/or location.
+#' @description get all data for a given dataset (the datastore), filtered by project if desired.
 #'
-#' @param datastoreID for CDMS dataset.
+#' @param datastoreID for CDMS dataset. see get_Datastores()
 #'
-#' @param species for Species of interest
-#'
-#' @param run for run associated with species
-#'
-#' @param pop_name for Population of interest
-#'
-#' @param survey_year year of interest.
-#'
-#' @param projectID for project of interest in CDMS project table.
-#'
-#' @param waterbodyID for stream in CDMS waterbodies table.
-#'
-#' @param locationID from location table.
+#' @param projectID for project Id of interest in CDMS project table. see get_Projects()
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
