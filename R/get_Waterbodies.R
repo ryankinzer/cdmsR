@@ -1,6 +1,6 @@
 #' @title get_Waterbodies:
 #'
-#' @description get all waterbodies listed in waterbodies table.
+#' @description get all CDMS water bodies.
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'

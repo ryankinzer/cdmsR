@@ -1,12 +1,10 @@
 #' @title get_WaterTempData:
 #'
-#' @description Retrieve CDMS water temperature data from CDMS between provided dates.
+#' @description Retrieve CDMS water temperature data from CDMS for a calendar year.
 #'
-#' @param date_begin First date of desired date range.
+#' @param year Desired year of data (YYYY).
 #'
-#' @param date_end Final Date of desired date range.
-#'
-#' @param locationID The CDMS Location ID of the desired location.
+#' @param locationID Location ID of the desired location. See get_ProjectLocations()
 #'
 #' @param cdms_host the web URL for the targeted CDMS user-interface page.
 #'
@@ -16,8 +14,7 @@
 #'
 #' @return NULL
 
-get_WaterTempData <- function(date_begin,
-                              date_end,
+get_WaterTempData <- function(year,
                               locationID = NULL,
                               cdms_host = 'https://npt-cdms.nezperce.org'){
 
@@ -30,39 +27,25 @@ get_WaterTempData <- function(date_begin,
   date_begin <- lubridate::ymd(date_begin)
   date_end <- lubridate::ymd(date_end)
 
+  # build URL for API
+  req_url <- paste0(cdms_host,'/services/api/v1/npt/getwatertempdata')
+  queryList <- list(Year = year,
+                    LocationId = locationID)
 
-  # loop
-  temp_data <- lubridate::year(date_begin):lubridate::year(date_end) %>%
-    map_df(.f = function(.x){
-      # build URL for API
-      req_url <- paste0(cdms_host,'/services/api/v1/npt/getwatertempdata')
-      queryList <- list(Year = .x,
-                        LocationId = locationID)
+  # httr::modify_url(req_url, query = queryList)
 
-      # httr::modify_url(req_url, query = queryList)
-
-      # GET request with query parameters
-      req <- httr::GET(req_url,
-                       query = queryList)
+  # GET request with query parameters
+  req <- httr::GET(req_url,
+                   query = queryList)
 
 
-      httr::stop_for_status(req,
-                            task = paste0('query all water temperature records from ', .x, '.'))
+  httr::stop_for_status(req,
+                        task = paste0('query water temperature records from ', x, '.'))
 
-      # parse the response
-      req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
-      df <- jsonlite::fromJSON(req_con, flatten = TRUE)
-    }
-    )
+  # parse the response
+  req_con <- httr::content(req, type = 'text', encoding = "UTF-8")
+  df <- jsonlite::fromJSON(req_con, flatten = TRUE)
 
-
-  # filter for provided start/end dates
-  final_df <- temp_data %>%
-    mutate(ReadingDate = lubridate::ymd_hms(ReadingDateTime),
-           ReadingDate = lubridate::as_date(ReadingDate)) %>%
-    filter(between(ReadingDate, date_begin, date_end)) %>%
-    select(-ReadingDate)
-
-  return(final_df)
+  return(df)
 
 }
