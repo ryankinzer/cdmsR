@@ -19,13 +19,7 @@ get_WaterTempData <- function(year,
                               cdms_host = 'https://npt-cdms.nezperce.org'){
 
   # Throw errors
-  {if(is.null(date_begin) | !grepl('^\\d{4}-\\d{2}-\\d{2}$', date_begin))stop("date_begin must be provided as YYYY-MM-DD")}
-  {if(is.null(date_end) | !grepl('^\\d{4}-\\d{2}-\\d{2}$', date_end))stop("date_end must be provided as YYYY-MM-DD")}
-  {if(date_begin >= date_end)stop('date_end must be after date_begin (YYYY-MM-DD)')}
-
-  # convert dates
-  date_begin <- lubridate::ymd(date_begin)
-  date_end <- lubridate::ymd(date_end)
+  {if(is.null(year) | !grepl('^\\d{4}$', year))stop("year must be provided as YYYY")}
 
   # build URL for API
   req_url <- paste0(cdms_host,'/services/api/v1/npt/getwatertempdata')
