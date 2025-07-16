@@ -5,23 +5,20 @@
 \title{get_WaterTempData:}
 \usage{
 get_WaterTempData(
-  date_begin,
-  date_end,
+  year,
   locationID = NULL,
   cdms_host = "https://npt-cdms.nezperce.org"
 )
 }
 \arguments{
-\item{date_begin}{First date of desired date range.}
+\item{year}{Desired year of data (YYYY).}
 
-\item{date_end}{Final Date of desired date range.}
-
-\item{locationID}{The CDMS Location ID of the desired location.}
+\item{locationID}{Location ID of the desired location. See get_ProjectLocations()}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-Retrieve CDMS water temperature data from CDMS between provided dates.
+Retrieve CDMS water temperature data from CDMS for a calendar year.
 }
 \author{
 Tyler Stright

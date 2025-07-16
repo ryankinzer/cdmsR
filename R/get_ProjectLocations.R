@@ -16,18 +16,19 @@
 #'
 #'
 get_ProjectLocations <- function(ProjectID,
-                                 DatastoreID = NULL,
                                  cdms_host = 'https://npt-cdms.nezperce.org'){
 
   if(is.null(ProjectID))stop('ProjectID must be provided.')
 
   # url
-  req_url <- paste0(cdms_host,'/services/api/v1/npt/getprojectlocations')
+  req_url <- paste0(cdms_host,'/services/api/v1/project/getlocations')
 
-  queryList <- list(ProjectID = ProjectID,
-                    DatastoreID = DatastoreID)
+  queryList <- list(ProjectId = ProjectID)
 
   # GET request with query parameters
+
+  httr::modify_url(req_url, query = queryList)
+
   req <- httr::GET(req_url,
                    query = queryList)
 

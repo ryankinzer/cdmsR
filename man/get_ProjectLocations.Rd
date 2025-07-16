@@ -4,18 +4,14 @@
 \alias{get_ProjectLocations}
 \title{get_ProjectLocations:}
 \usage{
-get_ProjectLocations(
-  ProjectID,
-  DatastoreID = NULL,
-  cdms_host = "https://npt-cdms.nezperce.org"
-)
+get_ProjectLocations(ProjectID, cdms_host = "https://npt-cdms.nezperce.org")
 }
 \arguments{
 \item{ProjectID}{CDMS Project ID. see cdmsR::get_Projects()}
 
-\item{DatastoreID}{CDMS Datastore ID. see cdmsR::get_Datastores().  NULL returns all.}
-
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
+
+\item{DatastoreID}{CDMS Datastore ID. see cdmsR::get_Datastores().  NULL returns all.}
 }
 \description{
 get Location information from CDMS for a specific project..

@@ -19,7 +19,7 @@ get_FINSvalues(
 }
 \description{
 helper function to provide acceptable values for FINS data queries:
-getFINSweirData() and getFINSspawningData().
+get_WeirData() and get_SpawningData().
 }
 \author{
 Tyler Stright

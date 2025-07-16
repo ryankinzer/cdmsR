@@ -10,7 +10,7 @@ get_Waterbodies(cdms_host = "https://npt-cdms.nezperce.org")
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
 }
 \description{
-get all waterbodies listed in waterbodies table.
+get all CDMS water bodies.
 }
 \author{
 Ryan Kinzer

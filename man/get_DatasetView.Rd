@@ -11,27 +11,14 @@ get_DatasetView(
 )
 }
 \arguments{
-\item{datastoreID}{for CDMS dataset.}
+\item{datastoreID}{for CDMS dataset. see get_Datastores()}
 
-\item{projectID}{for project of interest in CDMS project table.}
+\item{projectID}{for project Id of interest in CDMS project table. see get_Projects()}
 
 \item{cdms_host}{the web URL for the targeted CDMS user-interface page.}
-
-\item{species}{for Species of interest}
-
-\item{run}{for run associated with species}
-
-\item{pop_name}{for Population of interest}
-
-\item{survey_year}{year of interest.}
-
-\item{waterbodyID}{for stream in CDMS waterbodies table.}
-
-\item{locationID}{from location table.}
 }
 \description{
-get the big bucket for a given dataset, filtered by project,
- waterbody and/or location.
+get all data for a given dataset (the datastore), filtered by project if desired.
 }
 \author{
 Ryan Kinzer

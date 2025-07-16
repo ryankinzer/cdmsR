@@ -6,8 +6,8 @@
 \usage{
 get_P4Data(
   MRRProject = c("All", "CDR", "JLV", "IMN", "NPC", "SCS"),
-  EventSite = c("All", "JOHTRP", "SECTRP", "LSFTRP", "JOHNSC", "MCCA", "IMNTRP",
-    "NPTH", "SFCTRP", "NEWSOC", "CLWRSF", "LOLOC", "LOLTRP"),
+  EventSite = c("All", "JOHTRP", "SECTRP", "LSFTRP", "JOHNSC", "MCCA", "IMNTRP", "NPTH",
+    "SFCTRP", "NEWSOC", "CLWRSF", "LOLOC", "LOLTRP"),
   EventType = c("All", "Recapture", "Mark", "Recovery", "Tally", "Passive Recapture"),
   CaptureMethod = c("All", "SCREWT", "FYKNET", "BSEINE", "DIPNET", "SHOCK"),
   SRRcode = NULL,
